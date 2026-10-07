@@ -11,7 +11,8 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/150360.jpg",
    "https://ambrosiagroup.dk/img/prod/150360.png"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 1,
@@ -185,7 +186,7 @@
   "fmt": "can",
   "alc": true,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/01987.png"
+   "https://ambrosiagroup.dk/img/prod/01987.png"
   ]
  },
  {
@@ -198,7 +199,7 @@
   "fmt": "bottle",
   "alc": true,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/8411.jpg"
+   "https://ambrosiagroup.dk/img/prod/8411.jpg"
   ]
  },
  {
@@ -211,7 +212,7 @@
   "fmt": "can",
   "alc": true,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/154168.jpg"
+   "https://ambrosiagroup.dk/img/prod/154168.jpg"
   ]
  },
  {
@@ -224,7 +225,7 @@
   "fmt": "can",
   "alc": false,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/705.png"
+   "https://ambrosiagroup.dk/img/prod/705.png"
   ]
  },
  {
@@ -247,7 +248,9 @@
   "sale": "SALE!! DKK - 7.00",
   "fmt": "can",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/250013.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/250013.png"
+  ]
  },
  {
   "id": 19,
@@ -259,7 +262,7 @@
   "fmt": "bottle",
   "alc": true,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/9653.png"
+   "https://ambrosiagroup.dk/img/prod/9653.png"
   ]
  },
  {
@@ -272,7 +275,7 @@
   "fmt": "can",
   "alc": false,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/5514.png"
+   "https://ambrosiagroup.dk/img/prod/5514.png"
   ]
  },
  {
@@ -285,7 +288,7 @@
   "fmt": "can",
   "alc": false,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/14322.jpg"
+   "https://ambrosiagroup.dk/img/prod/14322.jpg"
   ]
  },
  {
@@ -298,7 +301,7 @@
   "fmt": "can",
   "alc": true,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/153985.jpg"
+   "https://ambrosiagroup.dk/img/prod/153985.jpg"
   ]
  },
  {
@@ -321,7 +324,9 @@
   "sale": "",
   "fmt": "bottle",
   "alc": true,
-  "img": ["https://tanjusha.nl/cdn/shop/files/4ADC647F-703B-43F8-A533-5DF21B549F24.png?v=1770912748&width=1024"]
+  "img": [
+   "https://tanjusha.nl/cdn/shop/files/4ADC647F-703B-43F8-A533-5DF21B549F24.png?v=1770912748&width=1024"
+  ]
  },
  {
   "id": 25,
@@ -332,7 +337,9 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/01788.jpg"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/01788.jpg"
+  ]
  },
  {
   "id": 26,
@@ -365,7 +372,9 @@
   "sale": "",
   "fmt": "bottle",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/152891.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/152891.png"
+  ]
  },
  {
   "id": 29,
@@ -387,7 +396,9 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/6407.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/6407.png"
+  ]
  },
  {
   "id": 31,
@@ -398,7 +409,9 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": ["https://sodavandskompagniet.dk/shop/img/gl_groen_tuborg.webp"]
+  "img": [
+   "https://sodavandskompagniet.dk/shop/img/gl_groen_tuborg.webp"
+  ]
  },
  {
   "id": 32,
@@ -409,7 +422,9 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": ["https://ambrosiagroup.dk/img/prod/153634.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/153634.png"
+  ]
  },
  {
   "id": 33,
@@ -431,7 +446,9 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": ["https://ambrosiagroup.dk/img/prod/36541.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/36541.png"
+  ]
  },
  {
   "id": 35,
@@ -442,7 +459,9 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": ["https://carlsbergdanmark.dk/media/b1fdeqjl/tuborg-classic-bottle-330ml-wet.png?height=1140&mode=max"]
+  "img": [
+   "https://carlsbergdanmark.dk/media/b1fdeqjl/tuborg-classic-bottle-330ml-wet.png?height=1140&mode=max"
+  ]
  },
  {
   "id": 36,
@@ -453,7 +472,9 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/152318.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/152318.png"
+  ]
  },
  {
   "id": 37,
@@ -489,7 +510,9 @@
   "sale": "",
   "fmt": "bottle",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/152731.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/152731.png"
+  ]
  },
  {
   "id": 40,
@@ -500,7 +523,9 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/150368.jpg"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/150368.jpg"
+  ]
  },
  {
   "id": 41,
@@ -511,7 +536,9 @@
   "sale": "",
   "fmt": "bottle",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/8426.jpg"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/8426.jpg"
+  ]
  },
  {
   "id": 42,
@@ -533,7 +560,9 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": ["https://drydrinker.com/cdn/shop/files/brooklyn-sfx-single-330ml-can.jpg?v=1764059525&width=2048"]
+  "img": [
+   "https://drydrinker.com/cdn/shop/files/brooklyn-sfx-single-330ml-can.jpg?v=1764059525&width=2048"
+  ]
  },
  {
   "id": 44,
@@ -566,7 +595,9 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": ["https://ambrosiagroup.dk/img/prod/3091.jpg"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/3091.jpg"
+  ]
  },
  {
   "id": 47,
@@ -577,7 +608,9 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": ["https://ambrosiagroup.dk/img/prod/6724.jpg"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/6724.jpg"
+  ]
  },
  {
   "id": 48,
@@ -588,7 +621,9 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": ["https://ambrosiagroup.dk/img/prod/155204.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/155204.png"
+  ]
  },
  {
   "id": 49,
@@ -610,7 +645,9 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": ["https://ambrosiagroup.dk/img/prod/154872.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/154872.png"
+  ]
  },
  {
   "id": 51,
@@ -621,7 +658,9 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": ["https://ambrosiagroup.dk/img/prod/154317.png"]
+  "img": [
+   "https://ambrosiagroup.dk/img/prod/154317.png"
+  ]
  },
  {
   "id": 52,
@@ -633,7 +672,7 @@
   "fmt": "can",
   "alc": true,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/154804.png"
+   "https://ambrosiagroup.dk/img/prod/154804.png"
   ]
  },
  {
@@ -657,7 +696,7 @@
   "fmt": "can",
   "alc": true,
   "img": [
-    "https://fadnord.dk/wp-content/uploads/sites/3/2025/01/Mikkeller-Hop-Shop-IPA-ds_1.png"
+   "https://fadnord.dk/wp-content/uploads/sites/3/2025/01/Mikkeller-Hop-Shop-IPA-ds_1.png"
   ]
  },
  {
@@ -670,7 +709,7 @@
   "fmt": "can",
   "alc": false,
   "img": [
-    "https://ambrosiagroup.dk/img/prod/154315.png"
+   "https://ambrosiagroup.dk/img/prod/154315.png"
   ]
  }
 ]
