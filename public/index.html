@@ -1,136 +1,2451 @@
-<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'><meta name='theme-color' content='#000000'><meta name='apple-mobile-web-app-capable' content='yes'><link rel='manifest' href='manifest.webmanifest'><title>Fredagsbar 344</title><style>
-:root{--k:#000;--w:#f2f0eb;--r:#ff3b1f;--mp:#5a78ff}
-*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}html{scroll-behavior:smooth}
-body{background:var(--k);color:var(--w);font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}
-.top{position:fixed;inset:0 0 auto 0;display:flex;justify-content:space-between;padding:18px 24px;z-index:20;mix-blend-mode:difference;font-weight:700;letter-spacing:.08em;font-size:.8rem;text-transform:uppercase;color:#fff;pointer-events:none}
-.hero{height:70svh;display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
-.hero h1{font-size:clamp(2.6rem,12.4vw,15rem);line-height:.82;letter-spacing:-.06em;font-weight:900;text-transform:uppercase}
-.hero p{margin-top:20px;max-width:40ch;opacity:.7}
-.mq{border-block:1px solid #333;overflow:hidden;white-space:nowrap;padding:14px 0;background:var(--w);color:var(--k)}
-.mq div{display:inline-block;animation:m 30s linear infinite;font-weight:900;font-size:1.6rem;text-transform:uppercase}
-@keyframes m{to{transform:translateX(-50%)}}
-.wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr)}
-#sb{position:sticky;top:0;z-index:15;background:var(--k);padding:14px 24px;border-bottom:1px solid #333}
-#q{width:100%;background:none;border:0;border-bottom:2px solid var(--w);color:var(--w);font-size:1.4rem;padding:8px 0;outline:none;font-family:inherit;text-transform:uppercase;letter-spacing:-.02em}
-#q::placeholder{color:#777}
-#none{display:none;padding:40px 24px;opacity:.6}
-#stage{position:sticky;top:0;height:100svh;border-left:1px solid #333;background:radial-gradient(circle at 50% 45%,#26231f,#000 72%);display:flex;align-items:center;justify-content:center;perspective:900px;overflow:hidden}
-#card{width:min(300px,70%);height:62%;transform-style:preserve-3d;transition:transform .12s ease-out;position:relative;display:flex;align-items:center;justify-content:center;background:none}
-#card img,#card svg{max-width:100%;max-height:100%;background:none;transform:translateZ(40px);pointer-events:none}
-#card img.rm{filter:url(#kw)}
-#gs{position:absolute;bottom:-4%;left:20%;right:20%;height:26px;background:radial-gradient(ellipse at center,rgba(0,0,0,.75),transparent 70%)}
-#info{position:absolute;left:24px;right:24px;bottom:90px;pointer-events:none}
-#info small{opacity:.6;letter-spacing:.15em;text-transform:uppercase}
-#info h3{font-size:clamp(1.6rem,3vw,2.6rem);letter-spacing:-.04em;text-transform:uppercase;line-height:.95;margin:6px 0}
-#info b{font-size:1.6rem}
-#hint{position:absolute;top:60px;right:24px;font-size:.7rem;opacity:.5;letter-spacing:.1em;text-transform:uppercase}
-section{padding:50px 24px 10px}
-h2{font-size:clamp(2.2rem,6vw,6rem);letter-spacing:-.05em;line-height:.85;text-transform:uppercase;margin-bottom:24px}
-h2 sup{font-size:.2em;color:var(--r);letter-spacing:0;vertical-align:top}
-.row{display:grid;grid-template-columns:44px 1fr auto 130px;gap:12px;align-items:center;padding:16px 0;border-top:1px solid #333;transition:padding .25s,background .25s,color .25s;cursor:pointer}
-.row:hover,.row.sel{background:var(--w);color:var(--k);padding-inline:14px}
-.row .n{opacity:.4;font-size:.75rem}
-.row .t{font-size:clamp(1.1rem,2vw,1.7rem);font-weight:800;letter-spacing:-.03em;text-transform:uppercase}
-.row .t small{display:block;font-size:.72rem;font-weight:400;letter-spacing:0;opacity:.6;text-transform:none}
-.tag{display:inline-block;background:var(--r);color:#fff;font-size:.6rem;padding:2px 6px;margin-left:8px;letter-spacing:.1em;vertical-align:middle}
-.row .p{font-size:1.2rem;font-weight:700}
-.q{display:flex;gap:8px;align-items:center;justify-content:flex-end}
-.q button{width:42px;height:42px;border-radius:50%;border:1.5px solid currentColor;background:none;color:inherit;font-size:1.3rem;cursor:pointer}
-.q button:hover{background:var(--r);border-color:var(--r);color:#fff}
-.q span{min-width:18px;text-align:center;font-weight:700}
-footer{padding:60px 24px 170px;opacity:.5;font-size:.8rem}
-#dock{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));background:var(--w);color:var(--k);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;z-index:30;transform:translateY(160%);transition:transform .35s cubic-bezier(.2,.9,.2,1)}
-#dock.on{transform:none}#dock b{font-size:1.9rem;letter-spacing:-.04em}
-#dock small{display:block;opacity:.6;max-width:42vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#pay{background:var(--mp);color:#fff;border:0;padding:16px 20px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;font-size:.9rem}
-#pay:disabled{opacity:.5}
-.ovl{position:fixed;inset:0;background:var(--k);z-index:50;display:none;flex-direction:column;justify-content:center;padding:24px}
-.ovl.on{display:flex}.ovl h1{font-size:clamp(3rem,14vw,14rem);line-height:.85;letter-spacing:-.06em;text-transform:uppercase}
-.ovl p{margin-top:20px;opacity:.75;max-width:48ch}.ovl .b{margin-top:22px;align-self:flex-start;background:var(--w);color:#000;border:0;padding:14px 22px;font-weight:800;cursor:pointer;text-transform:uppercase;text-decoration:none;font-size:.9rem}
-.ovl .b.mp{background:var(--mp);color:#fff}
-@media(max-width:860px){.wrap{display:flex;flex-direction:column}#stage{position:relative;top:auto;height:44svh;z-index:1;border:0;border-bottom:1px solid #333}#sb{position:sticky;top:48px;z-index:4;padding:10px 16px;background: var(--k)}#info{bottom:10px}#hint{display:none}.row{grid-template-columns:1fr auto}.row .n{display:none}.row .q{grid-column:1/-1;justify-content:flex-start}section{padding-top:30px}}
-</style></head><body>
-<svg width='0' height='0' style='position:absolute'><filter id='kw' color-interpolation-filters='sRGB'><feColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -4.2 -4.2 -4.2 0 11.7'/><feComposite in2='SourceAlpha' operator='in'/></filter></svg>
-<div class='top'><span>Fredagsbar 344 &copy;</span><span>Fridge &rarr; Hand</span></div>
-<div class='hero'><h1>Fredagsbar<br>344</h1><p><span id='cnt'>0</span> drinks. Tilt the bottle, tap pay, collect at the bar.</p></div>
-<div class='mq'><div id='mq'></div></div>
-<div class='wrap'><main><div id='sb'><input id='q' type='search' placeholder='Search drinks...' autocomplete='off'></div><div id='menu'></div><div id='none'>No drinks found.</div></main>
-<aside id='stage'><div id='card'><div id='art' style='display:contents'></div><div id='gs'></div></div><div id='hint'>Move cursor to tilt</div>
-<div id='info'><small id='ic'></small><h3 id='in'></h3><b id='ip'></b></div></aside></div>
-<footer>Drink responsibly. 18+ for alcohol (age checked in MobilePay). Prices in DKK.</footer>
-<div id='dock'><div><b id='tot'>0 kr</b><small id='sum'></small></div><button id='pay'>Pay with MobilePay &rarr;</button></div>
-<div class='ovl' id='mp'><h1 id='mh'></h1><p id='mt'></p><a class='b mp' id='mgo' target='_blank' rel='noopener'>Open MobilePay</a><button class='b' id='mcp'>Copy amount</button><button class='b' id='mdone'>I have paid</button><button class='b' id='mcx'>Cancel</button></div>
-<div class='ovl' id='ov'><h1 id='ovh'></h1><p id='ovp'></p><button class='b' onclick="location.href='/'">Back to menu</button></div>
-<script>
-const $=id=>document.getElementById(id);
-const ORDER=['Normal Beers','Non-Alc. Beers','Ciders and Other Alcoholic Drinks','Wine','Soft Drinks','Ginger Beer & Kombucha'];
-let DRINKS=[],byId={},hid=new Set(),cart={},pending=null,idle=true,t=0;
-const PAL=[[/guinn/i,['#0b0b0b','#e8c872','#e8c872']],[/coca-cola zero/i,['#111','#fff','#e60012']],[/coca/i,['#d6001c','#fff','#fff']],[/fanta/i,['#ff8a00','#fff','#5b2a86']],[/monster/i,['#0b0b0b','#7bff00','#7bff00']],[/erdinger/i,['#f2efe6','#1a3b7a','#c8a22c']],[/desperados/i,['#e8b400','#7a0c0c','#7a0c0c']],[/krenkerup j/i,['#9a1020','#f1e3c0','#f1e3c0']],[/tuborg p/i,['#f0d44a','#1a3a7a','#1a3a7a']],[/tuborg twist/i,['#f2e04a','#0b6b3a','#0b6b3a']],[/kombucha|combucha/i,['#c75a8a','#fff','#fff']],[/il capolavoro/i,['#e8e0b0','#4a5a1a','#4a5a1a']],[/lindeman/i,['#f2b6b6','#7a1a2a','#7a1a2a']],[/cuvee|cruse/i,['#4a0f1e','#e8d8b0','#e8d8b0']]];
-function pal(n){for(const[r,p]of PAL)if(r.test(n))return p;let h=0;for(const c of n)h=(h*31+c.charCodeAt(0))%360;return ['hsl('+h+',55%,28%)','#f2f0eb','#f2f0eb']}
-function placeholder(d){const[bg,fg,ac]=pal(d.name),parts=d.name.split(' - '),tt=(parts.length>1?parts.slice(1).join(' - '):d.name).toUpperCase();
- const L=[];let cur='';for(const w of tt.split(' ')){if((cur+' '+w).trim().length>11&&cur){L.push(cur);cur=w}else cur=(cur+' '+w).trim()}L.push(cur);
- const fs=L.length>3?15:L.length>2?18:22,y0=(d.fmt==='can'?190:262)-(L.length-1)*fs*.55;
- const txt=L.map((l,i)=>`<text x='100' y='${y0+i*fs*1.1}' text-anchor='middle' font-family='Helvetica,Arial' font-weight='900' font-size='${fs}' fill='${fg}'>${l.replace(/&/g,'&amp;')}</text>`).join('');
- const shape=d.fmt==='can'?`<rect x='30' y='30' width='140' height='300' rx='16' fill='#cfd3d8'/><rect x='30' y='70' width='140' height='220' fill='${bg}'/><rect x='40' y='22' width='120' height='14' rx='6' fill='#aab0b8'/><rect x='48' y='78' width='104' height='3' fill='${ac}'/>`
- :`<path d='M80 10h40v22h-4v70c0 18 34 40 34 70v150c0 10-6 16-16 16H62c-10 0-16-6-16-16V172c0-30 34-52 34-70V32z' fill='${d.fmt==='wine'?'#1d3b1f':'#7a4a10'}'/><rect x='46' y='200' width='108' height='130' fill='${bg}'/><rect x='78' y='4' width='44' height='12' rx='3' fill='${ac}'/><rect x='58' y='206' width='84' height='3' fill='${ac}'/>`;
- return `<svg viewBox='0 0 200 360'>${shape}${txt}</svg>`}
-const srcs=d=>['img/'+d.id+'.png',...(d.img||[])];
-function setSrc(el,i){const d=byId[el.dataset.id],s=srcs(d);if(i>=s.length){const w=document.createElement('div');w.innerHTML=placeholder(d);el.replaceWith(w.firstChild);return}el.dataset.n=i;el.classList.toggle('rm',/^https?:/.test(s[i]));el.src=s[i]}
-window.imgFail=el=>setSrc(el,+el.dataset.n+1);
-function art(d){const w=document.createElement('div');w.innerHTML=`<img referrerpolicy='no-referrer' data-id='${d.id}' data-n='0' alt='' onerror='imgFail(this)'>`;const el=w.firstChild;setSrc(el,0);return el}
-const norm=s=>s.toLowerCase().replaceAll('ø','o').replaceAll('æ','ae').replaceAll('å','a').replaceAll('é','e').replaceAll('è','e').replaceAll('ö','o').replaceAll('ü','u').replaceAll('ä','a');
-function build(){
- const vis=DRINKS.filter(d=>!hid.has(d.id));
- const cats=[...ORDER.filter(c=>vis.some(d=>d.cat===c)),...[...new Set(vis.map(d=>d.cat))].filter(c=>!ORDER.includes(c))];
- $('cnt').textContent=vis.length;
- $('mq').innerHTML=Array(6).fill('Fredagsbar 344 ✺ '+cats.join(' ✺ ')+' ✺ ').join('');
- $('menu').innerHTML=cats.map(c=>{const items=vis.filter(d=>d.cat===c);
-  return `<section><h2>${c}<sup>${String(items.length).padStart(2,'0')}</sup></h2>`+items.map(d=>`<div class='row' id='r${d.id}' data-id='${d.id}'><span class='n'>${String(d.id+1).padStart(2,'0')}</span><div class='t'>${d.name}${d.isNew?"<span class='tag'>NEW</span>":''}${d.sale?"<span class='tag'>SALE</span>":''}<small>${d.sale||''}</small></div><span class='p'>${d.price} kr</span><div class='q'><button data-d='-1' aria-label='less'>-</button><span id='q${d.id}'>0</span><button data-d='1' aria-label='more'>+</button></div></div>`).join('')+'</section>'}).join('');
- if(vis.length)show(vis[0].id);
-}
-function filter(){const q=norm($('q').value.trim());let total=0;
- document.querySelectorAll('#menu section').forEach(s=>{let n=0;s.querySelectorAll('.row').forEach(r=>{const d=byId[r.dataset.id],ok=!q||norm(d.name+' '+d.cat).includes(q);r.style.display=ok?'':'none';if(ok)n++});
-  s.style.display=n?'':'none';s.querySelector('sup').textContent=String(n).padStart(2,'0');total+=n});
- $('none').style.display=total?'none':'block'}
-$('q').addEventListener('input',filter);
-$('menu').addEventListener('click',e=>{const r=e.target.closest('.row');if(!r)return;const id=+r.dataset.id,b=e.target.closest('button');if(b)chg(id,+b.dataset.d);show(id)});
-function chg(id,d){cart[id]=Math.max(0,Math.min(20,(cart[id]||0)+d));$('q'+id).textContent=cart[id];upd()}
-const lines=()=>Object.entries(cart).filter(([,q])=>q>0).map(([id,q])=>[byId[id],q]);
-const total=()=>lines().reduce((s,[d,q])=>s+d.price*q,0);
-const desc=()=>lines().map(([d,q])=>q+'x '+d.name).join(', ');
-function upd(){$('tot').textContent=total()+' kr';$('sum').textContent=desc();$('dock').classList.toggle('on',total()>0)}
-function show(id){document.querySelectorAll('.row.sel').forEach(r=>r.classList.remove('sel'));const r=$('r'+id);if(r)r.classList.add('sel');
- const d=byId[id];$('ic').textContent=d.cat;$('in').textContent=d.name;$('ip').textContent=d.price+' kr';$('art').replaceChildren(art(d))}
-const card=$('card'),stage=$('stage');
-function tilt(x,y){const r=stage.getBoundingClientRect(),px=Math.max(-1,Math.min(1,(x-r.left-r.width/2)/(r.width/2))),py=Math.max(-1,Math.min(1,(y-r.top-r.height/2)/(r.height/2)));card.style.transform=`rotateY(${px*14}deg) rotateX(${-py*10}deg)`}
-addEventListener('mousemove',e=>{idle=false;tilt(e.clientX,e.clientY)});
-addEventListener('touchmove',e=>{idle=false;tilt(e.touches[0].clientX,e.touches[0].clientY)},{passive:true});
-addEventListener('deviceorientation',e=>{if(e.gamma==null)return;idle=false;card.style.transform=`rotateY(${Math.max(-14,Math.min(14,e.gamma/3))}deg) rotateX(${Math.max(-10,Math.min(10,((e.beta||45)-45)/4))}deg)`});
-document.addEventListener('mouseleave',()=>idle=true);
-setInterval(()=>{if(idle){t+=.05;card.style.transform=`rotateY(${Math.sin(t)*10}deg) rotateX(${Math.cos(t*.7)*4}deg)`}},40);
-const showOv=(h,p)=>{$('mp').classList.remove('on');$('ovh').innerHTML=h;$('ovp').textContent=p;$('ov').classList.add('on')};
-function fallbackScreen(j){pending=j;$('mh').innerHTML='Pay<br>'+j.amount+' kr';$('mt').textContent='Open MobilePay, enter exactly '+j.amount+' kr and write '+j.reference.slice(-6).toUpperCase()+' as the message. Then tap I have paid and show the next screen to the bartender.';$('mgo').href=j.fallbackUrl;$('mp').classList.add('on')}
-$('mcp').onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(String(pending.amount));$('mcp').textContent='Copied'};
-$('mdone').onclick=()=>showOv('Show this<br>at the bar',desc()+' - '+pending.amount+' kr - code '+pending.reference.slice(-6).toUpperCase());
-$('mcx').onclick=()=>$('mp').classList.remove('on');
-$('pay').onclick=async()=>{$('pay').disabled=true;$('pay').textContent='Opening...';
- try{const r=await fetch('/api/create-payment',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:lines().map(([d,qty])=>({id:d.id,qty}))})});
-  const j=await r.json();
-  if(j.redirectUrl){location.assign(j.redirectUrl);return}
-  if(j.fallbackUrl)fallbackScreen(j);else if(j.error==='unavailable')showOv('Sorry.','One of the drinks just sold out. Reload the menu.');else throw 0;
- }catch(e){showOv('Oops.','Payment could not be started. Please ask the bartender.')}
- $('pay').disabled=false;$('pay').textContent='Pay with MobilePay →'};
-const ref=new URLSearchParams(location.search).get('ref');
-if(ref){showOv('Checking<br>payment...','Hold on, asking MobilePay.');let n=0;
- const poll=async()=>{try{const j=await (await fetch('/api/status/'+ref)).json();
-  if(j.status==='PAID')showOv('Paid.<br>Cheers.','Show this at the bar: '+j.desc+' ('+j.total+' kr). Code '+j.code);
-  else if(j.status==='FAILED')showOv('Cancelled.','No money moved. Your liver thanks you.');
-  else if(++n<45)setTimeout(poll,2000);else showOv('Still pending.','Ask the bartender before paying again.')}catch(e){if(++n<45)setTimeout(poll,3000)}};
- setTimeout(poll,2500)}
-(async()=>{
- try{DRINKS=await (await fetch('drinks.json')).json()}catch(e){document.body.innerHTML='<p style="padding:24px;color:#fff">Menu could not be loaded. Start the server (npm start) and open http://localhost:3000</p>';return}
- DRINKS.forEach(d=>byId[d.id]=d);
- try{hid=new Set(await (await fetch('/api/hidden')).json())}catch(e){}
- build();
-})();
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="theme-color"
+    content="#000000"
+  >
+
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  >
+
+  <link
+    rel="manifest"
+    href="manifest.webmanifest"
+  >
+
+  <title>Fredagsbar 344</title>
+
+  <style>
+    :root {
+        --black: #000;
+        --white: #f2f0eb;
+        --red: #ff3b1f;
+        --mobilepay: #5a78ff;
+        --line: #333;
+        --muted: #777;
+
+        --page-padding: 24px;
+        --header-height: 56px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 116px;
+      scroll-padding-bottom: 130px;
+      text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      padding-bottom: 0;
+
+      background: var(--black);
+      color: var(--white);
+
+      font-family:
+        "Helvetica Neue",
+        Helvetica,
+        Arial,
+        sans-serif;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    .row:focus-visible {
+      outline: 3px solid var(--red);
+      outline-offset: 3px;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Header */
+
+    .top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      min-height: var(--header-height);
+      padding: 16px var(--page-padding) 12px;
+
+      background: var(--black);
+      color: var(--white);
+
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+
+      min-height: 70svh;
+      padding:
+        36px
+        var(--page-padding)
+        28px;
+    }
+
+    .hero h1 {
+      max-width: none;
+
+      font-size: clamp(3.8rem, 18vw, 9rem);
+      font-weight: 900;
+      letter-spacing: -.07em;
+      line-height: .82;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      max-width: 32ch;
+      margin-top: 22px;
+
+      color: rgba(242, 240, 235, .72);
+      font-size: .95rem;
+      line-height: 1.4;
+    }
+
+    /* Marquee */
+
+    .mq {
+      display: none;
+      overflow: hidden;
+
+      border-block: 1px solid var(--line);
+      padding: 14px 0;
+
+      background: var(--white);
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    .mq div {
+      display: inline-block;
+
+      font-size: 1.6rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      will-change: transform;
+    }
+
+    /* Main layout */
+
+    .wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      order: 2;
+      min-width: 0;
+    }
+
+    /* Product preview */
+
+    #stage {
+      position: relative;
+      z-index: 1;
+      order: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: 34svh;
+      min-height: 230px;
+      max-height: 330px;
+      overflow: hidden;
+
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(
+          circle at 50% 45%,
+          #26231f,
+          #000 72%
+        );
+
+      perspective: 900px;
+    }
+
+    #card {
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: min(190px, 52vw);
+      height: 78%;
+
+      transform-style: preserve-3d;
+      transition: transform .12s ease-out;
+      will-change: transform;
+    }
+
+    #card img,
+    #card svg {
+      max-width: 100%;
+      max-height: 100%;
+
+      background: transparent;
+      pointer-events: none;
+      transform: translateZ(22px);
+    }
+
+    #card img.remote-image {
+      filter: url(#kw);
+    }
+
+    #gs {
+      position: absolute;
+      right: 25%;
+      bottom: 2%;
+      left: 25%;
+
+      height: 18px;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(0, 0, 0, .75),
+          transparent 70%
+        );
+    }
+
+    #info {
+      position: absolute;
+      right: var(--page-padding);
+      bottom: 14px;
+      left: var(--page-padding);
+
+      pointer-events: none;
+    }
+
+    #info small {
+      display: block;
+
+      color: rgba(242, 240, 235, .6);
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    #info h3 {
+      max-width: 75%;
+      margin: 6px 0;
+
+      font-size: clamp(1.15rem, 5vw, 1.8rem);
+      letter-spacing: -.04em;
+      line-height: .95;
+      text-transform: uppercase;
+    }
+
+    #info b {
+      font-size: 1.15rem;
+    }
+
+    #hint {
+      display: none;
+    }
+
+    /* Search */
+
+    #sb {
+      position: sticky;
+      top: var(--header-height);
+      z-index: 15;
+
+      padding:
+        10px
+        var(--page-padding);
+
+      border-bottom: 1px solid var(--line);
+      background: rgba(0, 0, 0, .94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    #q {
+      width: 100%;
+      min-height: 44px;
+      padding: 8px 0;
+
+      border: 0;
+      border-bottom: 2px solid var(--white);
+      outline: none;
+
+      background: transparent;
+      color: var(--white);
+
+      font-size: 1.1rem;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+    }
+
+    #q::placeholder {
+      color: var(--muted);
+    }
+
+    #none {
+      padding: 40px var(--page-padding);
+      color: rgba(242, 240, 235, .6);
+    }
+
+    /* Menu sections */
+
+    section {
+      padding:
+        30px
+        var(--page-padding)
+        0;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+
+      font-size: clamp(2rem, 10vw, 3.5rem);
+      letter-spacing: -.05em;
+      line-height: .85;
+      text-transform: uppercase;
+    }
+
+    h2 sup {
+      color: var(--red);
+      font-size: .2em;
+      letter-spacing: 0;
+      vertical-align: top;
+    }
+
+    /* Menu rows */
+
+    .row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px 12px;
+      align-items: center;
+
+      min-height: 74px;
+      padding: 14px 0;
+
+      border-top: 1px solid var(--line);
+      cursor: pointer;
+      transition:
+        padding .25s,
+        background .25s,
+        color .25s;
+    }
+
+    .row:hover,
+    .row.sel {
+      padding-inline: 10px;
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .row .n {
+      display: none;
+    }
+
+    .row .t {
+      min-width: 0;
+
+      overflow-wrap: anywhere;
+
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .row .t small {
+      display: block;
+      margin-top: 5px;
+
+      font-size: .7rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.2;
+      opacity: .6;
+      text-transform: none;
+    }
+
+    .row .p {
+      align-self: start;
+      padding-top: 2px;
+
+      font-size: 1rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .tag {
+      display: inline-block;
+
+      margin-left: 8px;
+      padding: 2px 6px;
+
+      background: var(--red);
+      color: #fff;
+
+      font-size: .6rem;
+      letter-spacing: .1em;
+      vertical-align: middle;
+    }
+
+    .q {
+      display: flex;
+      grid-column: 1 / -1;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+    .q button {
+      width: 44px;
+      height: 44px;
+
+      border: 1.5px solid currentColor;
+      border-radius: 50%;
+
+      background: transparent;
+      color: inherit;
+
+      cursor: pointer;
+      font-size: 1.35rem;
+      line-height: 1;
+      touch-action: manipulation;
+    }
+
+    .q button:hover,
+    .q button:focus-visible {
+      border-color: var(--red);
+      background: var(--red);
+      color: #fff;
+    }
+
+    .q span {
+      min-width: 28px;
+
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Inline portrait artwork */
+
+    .row-art {
+      display: none;
+      grid-column: 1 / -1;
+
+      min-height: 210px;
+      padding: 18px 0 8px;
+
+      border-top: 1px solid rgba(242, 240, 235, .12);
+      text-align: center;
+    }
+
+    .row-art.open {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .row-art img,
+    .row-art svg {
+      width: min(170px, 48vw);
+      height: 200px;
+      max-width: 100%;
+      object-fit: contain;
+    }
+
+    /* Bottom cart */
+
+    #dock {
+      position: fixed;
+      right: 8px;
+      bottom: max(8px, env(safe-area-inset-bottom));
+      left: 8px;
+      z-index: 30;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+
+      min-height: 70px;
+      padding: 10px 12px;
+
+      border: 1px solid #222;
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, .45);
+
+      transform: translateY(160%);
+      transition:
+        transform .35s cubic-bezier(.2, .9, .2, 1);
+    }
+
+    #dock.on {
+      transform: none;
+    }
+
+    #dock > div:first-child {
+      min-width: 0;
+    }
+
+    #tot {
+      display: block;
+
+      font-size: 1.45rem;
+      letter-spacing: -.04em;
+      line-height: 1;
+    }
+
+    #sum {
+      display: block;
+      max-width: 38vw;
+      margin-top: 5px;
+
+      overflow: hidden;
+
+      color: rgba(0, 0, 0, .6);
+      font-size: .7rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #clear {
+      flex: 0 0 auto;
+
+      min-height: 44px;
+      padding: 8px;
+
+      border: 0;
+      background: transparent;
+      color: inherit;
+
+      cursor: pointer;
+      font-size: .7rem;
+      text-transform: uppercase;
+    }
+
+    #pay {
+      flex: 0 0 auto;
+
+      min-height: 48px;
+      padding: 12px 14px;
+
+      border: 0;
+      background: var(--mobilepay);
+      color: #fff;
+
+      cursor: pointer;
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    #pay:disabled {
+      cursor: not-allowed;
+      opacity: .5;
+    }
+
+    /* Overlays */
+
+    .ovl {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+
+      padding:
+        max(24px, env(safe-area-inset-top))
+        var(--page-padding)
+        max(24px, env(safe-area-inset-bottom));
+
+      background: var(--black);
+    }
+
+    .ovl.on {
+      display: flex;
+    }
+
+    .ovl h1 {
+      font-size: clamp(3rem, 16vw, 6rem);
+      letter-spacing: -.06em;
+      line-height: .85;
+      text-transform: uppercase;
+    }
+
+    .ovl p {
+      max-width: 48ch;
+      margin-top: 20px;
+
+      color: rgba(242, 240, 235, .75);
+      line-height: 1.45;
+    }
+
+    .ovl .b {
+      width: 100%;
+      min-height: 48px;
+      margin-top: 12px;
+      padding: 14px 22px;
+
+      border: 0;
+      background: var(--white);
+      color: var(--black);
+
+      cursor: pointer;
+      font-size: .9rem;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .ovl .b.mp {
+      background: var(--mobilepay);
+      color: #fff;
+    }
+
+    /* Footer */
+
+    footer {
+      padding:
+        50px
+        var(--page-padding)
+        140px;
+
+      color: rgba(242, 240, 235, .5);
+      font-size: .75rem;
+      line-height: 1.4;
+    }
+
+    /* Landscape phones */
+
+    @media (max-width: 860px) and (orientation: landscape) {
+      #stage {
+        display: flex;
+        height: 48svh;
+        max-height: 300px;
+      }
+
+      .row-art {
+        display: none !important;
+      }
+    }
+
+    /* Desktop */
+
+    @media (max-width: 860px) {
+        :root {
+            --page-padding: 16px;
+            --header-height: 52px;
+        }
+
+        html {
+            scroll-padding-top: 110px;
+            scroll-padding-bottom: 130px;
+        }
+
+        body {
+            padding-bottom: 120px;
+        }
+
+        .top {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+
+            min-height: var(--header-height);
+            padding:
+            16px
+            var(--page-padding)
+            12px;
+
+            background: var(--black);
+        }
+
+        .top span:last-child {
+            display: none;
+        }
+
+        .hero {
+            min-height: 70svh;
+            padding:
+            34px
+            var(--page-padding)
+            30px;
+        }
+
+        .hero h1 {
+            max-width: none;
+            font-size: clamp(3.8rem, 18vw, 8rem);
+            line-height: .82;
+        }
+
+        .hero p {
+            max-width: 30ch;
+            margin-top: 20px;
+            font-size: .9rem;
+        }
+
+        .mq {
+            display: block;
+            padding: 13px 0;
+        }
+
+        .mq div {
+            font-size: 1.25rem;
+            animation-duration: 28s;
+        }
+
+        .wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /*
+        * Hide the large desktop artwork panel on phones.
+        * Product artwork will appear inside the selected row instead.
+        */
+        #stage {
+            display: none;
+        }
+
+        #sb {
+            position: sticky;
+            top: var(--header-height);
+            z-index: 15;
+
+            padding:
+            10px
+            var(--page-padding);
+
+            background: rgba(0, 0, 0, .95);
+        }
+
+        #q {
+            min-height: 44px;
+            font-size: 1.05rem;
+        }
+
+        section {
+            padding:
+            30px
+            var(--page-padding)
+            0;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 10vw, 3.5rem);
+        }
+
+        .row {
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 8px 12px;
+            min-height: 74px;
+            padding: 14px 0;
+        }
+
+        .row .n {
+            display: none;
+        }
+
+        .row .t {
+            min-width: 0;
+            font-size: 1.05rem;
+        }
+
+        .row .p {
+            align-self: start;
+            padding-top: 2px;
+            font-size: 1rem;
+        }
+
+        .q {
+            grid-column: 1 / -1;
+            justify-content: flex-start;
+        }
+
+        .q button {
+            width: 44px;
+            height: 44px;
+        }
+
+        /*
+        * Hidden by default.
+        * JavaScript adds .open to the selected product.
+        */
+        .row-art {
+            display: none;
+            grid-column: 1 / -1;
+
+            min-height: 210px;
+            padding: 18px 0 8px;
+
+            border-top: 1px solid rgba(242, 240, 235, .12);
+        }
+
+        .row-art.open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .row-art img,
+        .row-art svg {
+            width: min(170px, 48vw);
+            height: 200px;
+            object-fit: contain;
+        }
+
+        #dock {
+            right: 8px;
+            bottom: max(8px, env(safe-area-inset-bottom));
+            left: 8px;
+        }
+    }
+
+    @media (min-width: 861px) {
+        .top {
+            position: fixed;
+            background: transparent;
+            mix-blend-mode: difference;
+        }
+
+        .hero {
+            height: 70svh;
+            min-height: 0;
+            padding: 24px;
+        }
+
+        .mq {
+            display: block;
+        }
+
+        #stage {
+            position: sticky;
+            top: 0;
+
+            display: flex;
+            height: 100svh;
+        }
+
+        .row-art {
+            display: none !important;
+        }
+        }
+
+    /* Hover only where hover is actually available */
+
+    @media (hover: hover) and (pointer: fine) {
+      .row:hover {
+        background: var(--white);
+        color: var(--black);
+      }
+    }
+
+    /* Reduced motion */
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
+      #card {
+        transform: none !important;
+      }
+
+      .mq {
+        display: none;
+      }
+    }
+
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Decorative SVG filter for remote product images -->
+  <svg
+    width="0"
+    height="0"
+    aria-hidden="true"
+    style="position:absolute"
+  >
+    <filter
+      id="kw"
+      color-interpolation-filters="sRGB"
+    >
+      <feColorMatrix
+        type="matrix"
+        values="
+          1 0 0 0 0
+          0 1 0 0 0
+          0 0 1 0 0
+          -4.2 -4.2 -4.2 0 11.7
+        "
+      />
+
+      <feComposite
+        in2="SourceAlpha"
+        operator="in"
+      />
+    </filter>
+  </svg>
+
+  <header class="top">
+    <span>Fredagsbar 344 ©</span>
+    <span>Fridge → Hand</span>
+  </header>
+
+  <section
+    class="hero"
+    aria-labelledby="page-title"
+  >
+    <h1 id="page-title">
+      Fredagsbar<br>
+      344
+    </h1>
+
+    <p>
+      <span id="cnt">0</span>
+      drinks. Tap a drink, choose a quantity, and pay at the bar.
+    </p>
+  </section>
+
+  <div
+    class="mq"
+    aria-hidden="true"
+  >
+    <div id="mq"></div>
+  </div>
+
+  <div class="wrap">
+    <main>
+      <div id="sb">
+        <label
+          class="sr-only"
+          for="q"
+        >
+          Search drinks
+        </label>
+
+        <input
+          id="q"
+          type="search"
+          placeholder="Search drinks..."
+          autocomplete="off"
+          enterkeyhint="search"
+        >
+      </div>
+
+      <div id="menu"></div>
+
+      <p id="none" hidden>
+        No drinks found.
+      </p>
+    </main>
+
+    <aside
+      id="stage"
+      aria-live="polite"
+      aria-label="Selected drink preview"
+    >
+      <div id="card">
+        <div
+          id="art"
+          style="display: contents"
+        ></div>
+
+        <div id="gs"></div>
+      </div>
+
+      <div id="hint">
+        Move cursor to tilt
+      </div>
+
+      <div id="info">
+        <small id="ic"></small>
+        <h3 id="in"></h3>
+        <b id="ip"></b>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    Drink responsibly. 18+ for alcohol.
+    Prices are in DKK.
+  </footer>
+
+  <div
+    id="dock"
+    aria-live="polite"
+    aria-label="Shopping cart"
+  >
+    <div>
+      <b id="tot">0 kr</b>
+      <small id="sum"></small>
+    </div>
+
+    <button
+      id="clear"
+      type="button"
+      aria-label="Clear order"
+    >
+      Clear
+    </button>
+
+    <button
+      id="pay"
+      type="button"
+      disabled
+    >
+      Pay with MobilePay →
+    </button>
+  </div>
+
+  <div
+    class="ovl"
+    id="mp"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="mh"
+  >
+    <h1 id="mh"></h1>
+
+    <p id="mt"></p>
+
+    <a
+      class="b mp"
+      id="mgo"
+      target="_blank"
+      rel="noopener"
+    >
+      Open MobilePay
+    </a>
+
+    <button
+      class="b"
+      id="mcp"
+      type="button"
+    >
+      Copy amount
+    </button>
+
+    <button
+      class="b"
+      id="mdone"
+      type="button"
+    >
+      I have paid
+    </button>
+
+    <button
+      class="b"
+      id="mcx"
+      type="button"
+    >
+      Cancel
+    </button>
+  </div>
+
+  <div
+    class="ovl"
+    id="ov"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="ovh"
+  >
+    <h1 id="ovh"></h1>
+
+    <p id="ovp"></p>
+
+    <button
+      class="b"
+      id="back"
+      type="button"
+    >
+      Back to menu
+    </button>
+  </div>
+
+  <script>
+    "use strict";
+
+    /*
+     * DOM helper
+     */
+
+    const $ = id => document.getElementById(id);
+
+    /*
+     * Menu configuration
+     */
+
+    const CATEGORY_ORDER = [
+      "Normal Beers",
+      "Non-Alc. Beers",
+      "Ciders and Other Alcoholic Drinks",
+      "Wine",
+      "Soft Drinks",
+      "Ginger Beer & Kombucha"
+    ];
+
+    /*
+     * Application state
+     */
+
+    let drinks = [];
+    let drinksById = {};
+    let hiddenDrinkIds = new Set();
+    let cart = {};
+    let pendingPayment = null;
+
+    let cardIsIdle = true;
+    let animationTime = 0;
+
+    const canHover = window.matchMedia(
+      "(hover: hover) and (pointer: fine)"
+    ).matches;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    /*
+     * Known product palettes
+     */
+
+    const PALETTES = [
+      [
+        /guinn/i,
+        ["#0b0b0b", "#e8c872", "#e8c872"]
+      ],
+      [
+        /coca-cola zero/i,
+        ["#111", "#fff", "#e60012"]
+      ],
+      [
+        /coca/i,
+        ["#d6001c", "#fff", "#fff"]
+      ],
+      [
+        /fanta/i,
+        ["#ff8a00", "#fff", "#5b2a86"]
+      ],
+      [
+        /monster/i,
+        ["#0b0b0b", "#7bff00", "#7bff00"]
+      ],
+      [
+        /erdinger/i,
+        ["#f2efe6", "#1a3b7a", "#c8a22c"]
+      ],
+      [
+        /desperados/i,
+        ["#e8b400", "#7a0c0c", "#7a0c0c"]
+      ],
+      [
+        /krenkerup j/i,
+        ["#9a1020", "#f1e3c0", "#f1e3c0"]
+      ],
+      [
+        /tuborg p/i,
+        ["#f0d44a", "#1a3a7a", "#1a3a7a"]
+      ],
+      [
+        /tuborg twist/i,
+        ["#f2e04a", "#0b6b3a", "#0b6b3a"]
+      ],
+      [
+        /kombucha|combucha/i,
+        ["#c75a8a", "#fff", "#fff"]
+      ],
+      [
+        /il capolavoro/i,
+        ["#e8e0b0", "#4a5a1a", "#4a5a1a"]
+      ],
+      [
+        /lindeman/i,
+        ["#f2b6b6", "#7a1a2a", "#7a1a2a"]
+      ],
+      [
+        /cuvee|cruse/i,
+        ["#4a0f1e", "#e8d8b0", "#e8d8b0"]
+      ]
+    ];
+
+    /*
+     * Text and data helpers
+     */
+
+    function normalise(value) {
+      return String(value)
+        .toLowerCase()
+        .replaceAll("ø", "o")
+        .replaceAll("æ", "ae")
+        .replaceAll("å", "a")
+        .replaceAll("é", "e")
+        .replaceAll("è", "e")
+        .replaceAll("ö", "o")
+        .replaceAll("ü", "u")
+        .replaceAll("ä", "a");
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function getPalette(name) {
+      for (const [pattern, palette] of PALETTES) {
+        if (pattern.test(name)) {
+          return palette;
+        }
+      }
+
+      let hue = 0;
+
+      for (const character of String(name)) {
+        hue = (
+          hue * 31 +
+          character.charCodeAt(0)
+        ) % 360;
+      }
+
+      return [
+        `hsl(${hue}, 55%, 28%)`,
+        "#f2f0eb",
+        "#f2f0eb"
+      ];
+    }
+
+    /*
+     * Artwork
+     */
+
+    function buildPlaceholderArtwork(drink) {
+      const [
+        background,
+        foreground,
+        accent
+      ] = getPalette(drink.name);
+
+      const nameParts = String(drink.name)
+        .split(" - ");
+
+      const artworkTitle = (
+        nameParts.length > 1
+          ? nameParts.slice(1).join(" - ")
+          : drink.name
+      ).toUpperCase();
+
+      const lines = [];
+      let currentLine = "";
+
+      for (const word of artworkTitle.split(" ")) {
+        const candidate = (
+          `${currentLine} ${word}`
+        ).trim();
+
+        if (
+          candidate.length > 11 &&
+          currentLine
+        ) {
+          lines.push(currentLine);
+          currentLine = word;
+        } else {
+          currentLine = candidate;
+        }
+      }
+
+      if (currentLine) {
+        lines.push(currentLine);
+      }
+
+      const fontSize = (
+        lines.length > 3
+          ? 15
+          : lines.length > 2
+            ? 18
+            : 22
+      );
+
+      const yStart = (
+        drink.fmt === "can"
+          ? 190
+          : 262
+      ) - (
+        lines.length - 1
+      ) * fontSize * .55;
+
+      const text = lines
+        .map((line, index) => `
+          <text
+            x="100"
+            y="${yStart + index * fontSize * 1.1}"
+            text-anchor="middle"
+            font-family="Helvetica, Arial"
+            font-weight="900"
+            font-size="${fontSize}"
+            fill="${foreground}"
+          >
+            ${escapeHtml(line)}
+          </text>
+        `)
+        .join("");
+
+      const shape = drink.fmt === "can"
+        ? `
+          <rect
+            x="30"
+            y="30"
+            width="140"
+            height="300"
+            rx="16"
+            fill="#cfd3d8"
+          />
+
+          <rect
+            x="30"
+            y="70"
+            width="140"
+            height="220"
+            fill="${background}"
+          />
+
+          <rect
+            x="40"
+            y="22"
+            width="120"
+            height="14"
+            rx="6"
+            fill="#aab0b8"
+          />
+
+          <rect
+            x="48"
+            y="78"
+            width="104"
+            height="3"
+            fill="${accent}"
+          />
+        `
+        : `
+          <path
+            d="
+              M80 10
+              h40
+              v22
+              h-4
+              v70
+              c0 18 34 40 34 70
+              v150
+              c0 10-6 16-16 16
+              H62
+              c-10 0-16-6-16-16
+              V172
+              c0-30 34-52 34-70
+              V32
+              z
+            "
+            fill="${drink.fmt === "wine"
+              ? "#1d3b1f"
+              : "#7a4a10"}"
+          />
+
+          <rect
+            x="46"
+            y="200"
+            width="108"
+            height="130"
+            fill="${background}"
+          />
+
+          <rect
+            x="78"
+            y="4"
+            width="44"
+            height="12"
+            rx="3"
+            fill="${accent}"
+          />
+
+          <rect
+            x="58"
+            y="206"
+            width="84"
+            height="3"
+            fill="${accent}"
+          />
+        `;
+
+      return `
+        <svg
+          viewBox="0 0 200 360"
+          role="img"
+          aria-label="${escapeHtml(drink.name)}"
+        >
+          ${shape}
+          ${text}
+        </svg>
+      `;
+    }
+
+    function imageSources(drink) {
+      return [
+        `img/${drink.id}.png`,
+        ...(Array.isArray(drink.img)
+          ? drink.img
+          : [])
+      ];
+    }
+
+    function setImageSource(image, index = 0) {
+      const drink = drinksById[image.dataset.id];
+      const sources = imageSources(drink);
+
+      if (index >= sources.length) {
+        const wrapper = document.createElement("div");
+
+        wrapper.innerHTML =
+          buildPlaceholderArtwork(drink);
+
+        image.replaceWith(
+          wrapper.firstElementChild
+        );
+
+        return;
+      }
+
+      const source = sources[index];
+
+      image.dataset.sourceIndex = String(index);
+
+      image.classList.toggle(
+        "remote-image",
+        /^https?:\/\//i.test(source)
+      );
+
+      image.src = source;
+    }
+
+    function createArtwork(drink) {
+      const image = document.createElement("img");
+
+      image.dataset.id = String(drink.id);
+      image.dataset.sourceIndex = "0";
+      image.alt = "";
+      image.referrerPolicy = "no-referrer";
+      image.setAttribute("aria-hidden", "true");
+
+      image.addEventListener("error", () => {
+        const nextIndex = Number(
+          image.dataset.sourceIndex
+        ) + 1;
+
+        setImageSource(image, nextIndex);
+      });
+
+      setImageSource(image, 0);
+
+      return image;
+    }
+
+    /*
+     * Menu rendering
+     */
+
+    function visibleDrinks() {
+      return drinks.filter(drink => {
+        return !hiddenDrinkIds.has(
+          String(drink.id)
+        );
+      });
+    }
+
+    function getVisibleCategories(items) {
+      const orderedCategories =
+        CATEGORY_ORDER.filter(category => {
+          return items.some(drink => {
+            return drink.cat === category;
+          });
+        });
+
+      const additionalCategories = [
+        ...new Set(
+          items
+            .map(drink => drink.cat)
+            .filter(category => {
+              return !CATEGORY_ORDER.includes(category);
+            })
+        )
+      ];
+
+      return [
+        ...orderedCategories,
+        ...additionalCategories
+      ];
+    }
+
+    function createDrinkRow(drink) {
+      const row = document.createElement("div");
+
+      row.className = "row";
+      row.id = `r${drink.id}`;
+      row.dataset.id = String(drink.id);
+      row.tabIndex = 0;
+      row.setAttribute("role", "button");
+      row.setAttribute(
+        "aria-label",
+        `${drink.name}, ${drink.price} kroner`
+      );
+
+      const number = document.createElement("span");
+      number.className = "n";
+      number.textContent = String(drink.id + 1)
+        .padStart(2, "0");
+
+      const title = document.createElement("div");
+      title.className = "t";
+
+      const name = document.createElement("span");
+      name.textContent = drink.name;
+
+      title.append(name);
+
+      if (drink.isNew) {
+        const tag = document.createElement("span");
+
+        tag.className = "tag";
+        tag.textContent = "NEW";
+
+        title.append(tag);
+      }
+
+      if (drink.sale) {
+        const tag = document.createElement("span");
+
+        tag.className = "tag";
+        tag.textContent = "SALE";
+
+        title.append(tag);
+      }
+
+      const note = document.createElement("small");
+      note.textContent = drink.sale || "";
+
+      title.append(note);
+
+      const price = document.createElement("span");
+      price.className = "p";
+      price.textContent = `${drink.price} kr`;
+
+      const quantityControls =
+        document.createElement("div");
+
+      quantityControls.className = "q";
+
+      const removeButton =
+        document.createElement("button");
+
+      removeButton.type = "button";
+      removeButton.dataset.delta = "-1";
+      removeButton.setAttribute(
+        "aria-label",
+        `Remove one ${drink.name}`
+      );
+      removeButton.textContent = "−";
+
+      const quantity = document.createElement("span");
+      quantity.id = `q${drink.id}`;
+      quantity.textContent = "0";
+      quantity.setAttribute(
+        "aria-label",
+        `Quantity of ${drink.name}`
+      );
+
+      const addButton =
+        document.createElement("button");
+
+      addButton.type = "button";
+      addButton.dataset.delta = "1";
+      addButton.setAttribute(
+        "aria-label",
+        `Add one ${drink.name}`
+      );
+      addButton.textContent = "+";
+
+      quantityControls.append(
+        removeButton,
+        quantity,
+        addButton
+      );
+
+      const artworkContainer =
+        document.createElement("div");
+
+      artworkContainer.className = "row-art";
+      artworkContainer.id = `art-row-${drink.id}`;
+      artworkContainer.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      row.append(
+        number,
+        title,
+        price,
+        quantityControls,
+        artworkContainer
+      );
+
+      return row;
+    }
+
+    function renderMenu() {
+      const items = visibleDrinks();
+      const categories = getVisibleCategories(items);
+
+      $("cnt").textContent = String(items.length);
+
+      $("mq").textContent = [
+        ...Array(6)
+      ]
+        .map(() => {
+          return `Fredagsbar 344 ✺ ${
+            categories.join(" ✺ ")
+          } ✺ `;
+        })
+        .join("");
+
+      $("menu").replaceChildren();
+
+      for (const category of categories) {
+        const section = document.createElement("section");
+        const heading = document.createElement("h2");
+        const counter = document.createElement("sup");
+
+        heading.append(
+          document.createTextNode(category)
+        );
+
+        const categoryItems = items.filter(drink => {
+          return drink.cat === category;
+        });
+
+        counter.textContent = String(
+          categoryItems.length
+        ).padStart(2, "0");
+
+        heading.append(counter);
+        section.append(heading);
+
+        for (const drink of categoryItems) {
+          section.append(
+            createDrinkRow(drink)
+          );
+        }
+
+        $("menu").append(section);
+      }
+
+      if (items.length > 0) {
+        showDrink(items[0].id);
+      }
+    }
+
+    function filterMenu() {
+      const query = normalise(
+        $("q").value.trim()
+      );
+
+      let visibleCount = 0;
+
+      document
+        .querySelectorAll("#menu section")
+        .forEach(section => {
+          let sectionCount = 0;
+
+          section
+            .querySelectorAll(".row")
+            .forEach(row => {
+              const drink = drinksById[row.dataset.id];
+
+              const searchableText = normalise(
+                `${drink.name} ${drink.cat}`
+              );
+
+              const matches = (
+                !query ||
+                searchableText.includes(query)
+              );
+
+              row.hidden = !matches;
+
+              if (matches) {
+                sectionCount += 1;
+                visibleCount += 1;
+              }
+            });
+
+          section.hidden = sectionCount === 0;
+
+          const counter = section.querySelector("sup");
+
+          if (counter) {
+            counter.textContent = String(
+              sectionCount
+            ).padStart(2, "0");
+          }
+        });
+
+      $("none").hidden = visibleCount !== 0;
+    }
+
+    /*
+     * Selection and inline artwork
+     */
+
+    function showDrink(id) {
+      document
+        .querySelectorAll(".row.sel")
+        .forEach(row => {
+          row.classList.remove("sel");
+        });
+
+      document
+        .querySelectorAll(".row-art.open")
+        .forEach(container => {
+          container.classList.remove("open");
+          container.replaceChildren();
+          container.setAttribute(
+            "aria-hidden",
+            "true"
+          );
+        });
+
+      const row = $(`r${id}`);
+      const drink = drinksById[String(id)];
+
+      if (!row || !drink) {
+        return;
+      }
+
+      row.classList.add("sel");
+
+      $("ic").textContent = drink.cat;
+      $("in").textContent = drink.name;
+      $("ip").textContent = `${drink.price} kr`;
+
+      /*
+       * The desktop preview remains in #stage.
+       */
+      $("art").replaceChildren(
+        createArtwork(drink)
+      );
+
+      /*
+       * The portrait preview appears directly under
+       * the selected product row.
+       */
+      const inlineArtwork =
+        $(`art-row-${id}`);
+
+      if (inlineArtwork) {
+        inlineArtwork.append(
+          createArtwork(drink)
+        );
+
+        inlineArtwork.classList.add("open");
+        inlineArtwork.setAttribute(
+          "aria-hidden",
+          "false"
+        );
+      }
+    }
+
+    /*
+     * Cart
+     */
+
+    function getCartLines() {
+      return Object.entries(cart)
+        .filter(([, quantity]) => quantity > 0)
+        .map(([id, quantity]) => {
+          return [
+            drinksById[String(id)],
+            quantity
+          ];
+        })
+        .filter(([drink]) => Boolean(drink));
+    }
+
+    function getCartTotal() {
+      return getCartLines().reduce(
+        (total, [drink, quantity]) => {
+          return total + drink.price * quantity;
+        },
+        0
+      );
+    }
+
+    function getCartDescription() {
+      return getCartLines()
+        .map(([drink, quantity]) => {
+          return `${quantity}× ${drink.name}`;
+        })
+        .join(", ");
+    }
+
+    function updateCart() {
+      const total = getCartTotal();
+
+      $("tot").textContent = `${total} kr`;
+      $("sum").textContent = getCartDescription();
+
+      $("dock").classList.toggle(
+        "on",
+        total > 0
+      );
+
+      $("pay").disabled = total <= 0;
+    }
+
+    function changeQuantity(id, delta) {
+      const current = cart[id] || 0;
+
+      cart[id] = Math.max(
+        0,
+        Math.min(20, current + delta)
+      );
+
+      const quantityElement = $(`q${id}`);
+
+      if (quantityElement) {
+        quantityElement.textContent =
+          String(cart[id]);
+      }
+
+      updateCart();
+    }
+
+    function clearCart() {
+      cart = {};
+
+      Object.keys(drinksById).forEach(id => {
+        const quantityElement = $(`q${id}`);
+
+        if (quantityElement) {
+          quantityElement.textContent = "0";
+        }
+      });
+
+      updateCart();
+    }
+
+    /*
+     * Preview interaction
+     */
+
+    function tiltCard(clientX, clientY) {
+      const rect = $("stage")
+        .getBoundingClientRect();
+
+      const x = Math.max(
+        -1,
+        Math.min(
+          1,
+          (
+            clientX -
+            rect.left -
+            rect.width / 2
+          ) / (rect.width / 2)
+        )
+      );
+
+      const y = Math.max(
+        -1,
+        Math.min(
+          1,
+          (
+            clientY -
+            rect.top -
+            rect.height / 2
+          ) / (rect.height / 2)
+        )
+      );
+
+      $("card").style.transform = `
+        rotateY(${x * 14}deg)
+        rotateX(${-y * 10}deg)
+      `;
+    }
+
+    function animateCard() {
+      if (
+        !prefersReducedMotion &&
+        cardIsIdle &&
+        !document.hidden
+      ) {
+        animationTime += .025;
+
+        $("card").style.transform = `
+          rotateY(${Math.sin(animationTime) * 7}deg)
+          rotateX(${Math.cos(animationTime * .7) * 3}deg)
+        `;
+      }
+
+      window.requestAnimationFrame(
+        animateCard
+      );
+    }
+
+    function initialiseCardInteraction() {
+      if (
+        prefersReducedMotion ||
+        !canHover
+      ) {
+        return;
+      }
+
+      window.addEventListener(
+        "mousemove",
+        event => {
+          cardIsIdle = false;
+
+          tiltCard(
+            event.clientX,
+            event.clientY
+          );
+        }
+      );
+
+      document.addEventListener(
+        "mouseleave",
+        () => {
+          cardIsIdle = true;
+        }
+      );
+    }
+
+    /*
+     * Overlay helpers
+     */
+
+    function closeOverlays() {
+      $("mp").classList.remove("on");
+      $("ov").classList.remove("on");
+    }
+
+    function showOverlay(title, message) {
+      $("mp").classList.remove("on");
+
+      $("ovh").innerHTML = title;
+      $("ovp").textContent = message;
+
+      $("ov").classList.add("on");
+    }
+
+    /*
+     * Payment
+     */
+
+    function showManualPayment(payment) {
+      pendingPayment = payment;
+
+      $("mh").innerHTML = `
+        Pay<br>
+        ${escapeHtml(payment.amount)} kr
+      `;
+
+      $("mt").textContent =
+        `Open MobilePay and enter exactly ${
+          payment.amount
+        } kr. Add ${
+          String(payment.reference)
+            .slice(-6)
+            .toUpperCase()
+        } as the message. Then tap “I have paid” and show the next screen to the bartender.`;
+
+      $("mgo").href = payment.fallbackUrl;
+      $("mp").classList.add("on");
+    }
+
+    async function startPayment() {
+      const payButton = $("pay");
+
+      if (getCartTotal() <= 0) {
+        return;
+      }
+
+      payButton.disabled = true;
+      payButton.textContent = "Opening...";
+
+      const payload = {
+        items: getCartLines().map(
+          ([drink, quantity]) => {
+            return {
+              id: drink.id,
+              qty: quantity
+            };
+          }
+        )
+      };
+
+      try {
+        const response = await fetch(
+          "/api/create-payment",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(
+            `Payment request failed: ${
+              response.status
+            }`
+          );
+        }
+
+        const payment = await response.json();
+
+        if (payment.redirectUrl) {
+          window.location.assign(
+            payment.redirectUrl
+          );
+          return;
+        }
+
+        if (payment.fallbackUrl) {
+          showManualPayment(payment);
+          return;
+        }
+
+        if (payment.error === "unavailable") {
+          showOverlay(
+            "Sorry.",
+            "One of the drinks just sold out. Reload the menu."
+          );
+          return;
+        }
+
+        throw new Error(
+          "Invalid payment response."
+        );
+      } catch (error) {
+        console.error(error);
+
+        showOverlay(
+          "Oops.",
+          "Payment could not be started. Please ask the bartender."
+        );
+      } finally {
+        payButton.disabled =
+          getCartTotal() <= 0;
+
+        payButton.textContent =
+          "Pay with MobilePay →";
+      }
+    }
+
+    async function copyPaymentAmount() {
+      if (!pendingPayment) {
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(
+          String(pendingPayment.amount)
+        );
+
+        $("mcp").textContent = "Copied";
+      } catch {
+        $("mcp").textContent =
+          "Copy unavailable";
+      }
+    }
+
+    function showManualPaymentConfirmation() {
+      if (!pendingPayment) {
+        return;
+      }
+
+      showOverlay(
+        "Show this<br>at the bar",
+        `${getCartDescription()} — ${
+          pendingPayment.amount
+        } kr — code ${
+          String(pendingPayment.reference)
+            .slice(-6)
+            .toUpperCase()
+        }`
+      );
+    }
+
+    async function checkPaymentStatus(reference) {
+      showOverlay(
+        "Checking<br>payment...",
+        "Hold on, asking MobilePay."
+      );
+
+      let attempts = 0;
+      const maximumAttempts = 45;
+
+      async function poll() {
+        try {
+          const response = await fetch(
+            `/api/status/${encodeURIComponent(reference)}`
+          );
+
+          if (!response.ok) {
+            throw new Error(
+              `Payment status failed: ${
+                response.status
+              }`
+            );
+          }
+
+          const payment = await response.json();
+
+          if (payment.status === "PAID") {
+            showOverlay(
+              "Paid.<br>Cheers.",
+              `Show this at the bar: ${
+                payment.desc
+              } (${payment.total} kr). Code ${
+                payment.code
+              }`
+            );
+
+            return;
+          }
+
+          if (payment.status === "FAILED") {
+            showOverlay(
+              "Cancelled.",
+              "No money moved. Your liver thanks you."
+            );
+
+            return;
+          }
+
+          attempts += 1;
+
+          if (attempts < maximumAttempts) {
+            window.setTimeout(
+              poll,
+              2000
+            );
+          } else {
+            showOverlay(
+              "Still pending.",
+              "Ask the bartender before paying again."
+            );
+          }
+        } catch (error) {
+          console.error(error);
+
+          attempts += 1;
+
+          if (attempts < maximumAttempts) {
+            window.setTimeout(
+              poll,
+              3000
+            );
+          } else {
+            showOverlay(
+              "Still pending.",
+              "Ask the bartender before paying again."
+            );
+          }
+        }
+      }
+
+      window.setTimeout(
+        poll,
+        2500
+      );
+    }
+
+    /*
+     * Event handlers
+     */
+
+    $("q").addEventListener(
+      "input",
+      filterMenu
+    );
+
+    $("menu").addEventListener(
+      "click",
+      event => {
+        const row = event.target.closest(
+          ".row"
+        );
+
+        if (!row) {
+          return;
+        }
+
+        const id = Number(row.dataset.id);
+        const button = event.target.closest(
+          "button"
+        );
+
+        if (button) {
+          changeQuantity(
+            id,
+            Number(button.dataset.delta)
+          );
+        }
+
+        showDrink(id);
+      }
+    );
+
+    $("menu").addEventListener(
+      "keydown",
+      event => {
+        const row = event.target.closest(
+          ".row"
+        );
+
+        if (!row) {
+          return;
+        }
+
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+          event.preventDefault();
+
+          showDrink(
+            Number(row.dataset.id)
+          );
+        }
+      }
+    );
+
+    $("clear").addEventListener(
+      "click",
+      clearCart
+    );
+
+    $("pay").addEventListener(
+      "click",
+      startPayment
+    );
+
+    $("mcp").addEventListener(
+      "click",
+      copyPaymentAmount
+    );
+
+    $("mdone").addEventListener(
+      "click",
+      showManualPaymentConfirmation
+    );
+
+    $("mcx").addEventListener(
+      "click",
+      closeOverlays
+    );
+
+    $("back").addEventListener(
+      "click",
+      () => {
+        closeOverlays();
+
+        window.scrollTo({
+          top: 0,
+          behavior: prefersReducedMotion
+            ? "auto"
+            : "smooth"
+        });
+      }
+    );
+
+    document.addEventListener(
+      "visibilitychange",
+      () => {
+        cardIsIdle = document.hidden;
+      }
+    );
+
+    /*
+     * Startup
+     */
+
+    async function loadApplication() {
+      try {
+        const drinksResponse = await fetch(
+          "drinks.json"
+        );
+
+        if (!drinksResponse.ok) {
+          throw new Error(
+            `Could not load drinks.json: ${
+              drinksResponse.status
+            }`
+          );
+        }
+
+        drinks = await drinksResponse.json();
+
+        drinksById = Object.fromEntries(
+          drinks.map(drink => [
+            String(drink.id),
+            drink
+          ])
+        );
+
+        try {
+          const hiddenResponse = await fetch(
+            "/api/hidden"
+          );
+
+          if (hiddenResponse.ok) {
+            const hiddenIds =
+              await hiddenResponse.json();
+
+            hiddenDrinkIds = new Set(
+              hiddenIds.map(id => String(id))
+            );
+          }
+        } catch (error) {
+          console.warn(
+            "Hidden drinks could not be loaded.",
+            error
+          );
+        }
+
+        renderMenu();
+        updateCart();
+        initialiseCardInteraction();
+
+        if (!prefersReducedMotion) {
+          window.requestAnimationFrame(
+            animateCard
+          );
+        }
+
+        const reference =
+          new URLSearchParams(
+            window.location.search
+          ).get("ref");
+
+        if (reference) {
+          checkPaymentStatus(reference);
+        }
+      } catch (error) {
+        console.error(error);
+
+        document.body.innerHTML = `
+          <main
+            style="
+              padding: 24px;
+              color: white;
+              font-family: Arial, sans-serif;
+            "
+          >
+            <h1>Menu could not be loaded.</h1>
+            <p>
+              Start the server and open the application through
+              http://localhost:3000 rather than opening the HTML file directly.
+            </p>
+          </main>
+        `;
+      }
+    }
+
+    loadApplication();
+  </script>
+</body>
+</html>
