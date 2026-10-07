@@ -35,7 +35,9 @@ function gh(p, buf, msg) {
 }
 function saveDrinks(msg) {
   for (const d of DRINKS) d.hidden = hidden.has(d.id) || undefined;
-  const s = JSON.stringify(DRINKS, null, 1); /* …rest unchanged… */
+  const s = JSON.stringify(DRINKS, null, 1);
+  fs.writeFileSync(DFILE, s);
+  gh('public/drinks.json', Buffer.from(s), msg || 'Update drinks');
 }
 // image pull: Ambrosia number, direct URL, or Google image search; white background removed
 const UA = { 'User-Agent': 'Mozilla/5.0' };
