@@ -125,7 +125,7 @@
 
             min-height: 20svh;
             padding:
-                calc(var(--header-height) + 24px) var(--page-padding) 28px;
+                36px var(--page-padding) 28px;
         }
 
         .hero h1 {
@@ -150,7 +150,7 @@
         /* Marquee */
 
         .mq {
-            display: block;
+            display: none;
             overflow: hidden;
 
             border-block: 1px solid var(--line);
@@ -168,9 +168,6 @@
             font-weight: 900;
             text-transform: uppercase;
             will-change: transform;
-            backface-visibility: hidden;
-            transform: translate3d(0, 0, 0);
-            animation: marquee var(--mq-duration, 40s) linear infinite;
         }
 
         /* Main layout */
@@ -303,40 +300,6 @@
             background: rgba(0, 0, 0, .94);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-        }
-
-        #chips {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        #chips::-webkit-scrollbar {
-            display: none;
-        }
-
-        #chips button {
-            flex: none;
-            min-height: 36px;
-            padding: 6px 12px;
-
-            border: 1.5px solid var(--white);
-            background: none;
-            color: var(--white);
-
-            cursor: pointer;
-            font-size: .72rem;
-            font-weight: 700;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-            touch-action: manipulation;
-        }
-
-        #chips button.on {
-            background: var(--white);
-            color: var(--black);
         }
 
         #q {
@@ -746,10 +709,10 @@
             }
 
             .hero {
-                height: auto;
-                min-height: 30svh;
+                height: 30svh;
+                min-height: 5svh;
                 padding:
-                    calc(var(--header-height) + 24px) var(--page-padding) 30px;
+                    34px var(--page-padding) 30px;
             }
 
             .hero h1 {
@@ -771,6 +734,7 @@
 
             .mq div {
                 font-size: 1.25rem;
+                animation-duration: 28s;
             }
 
             .wrap {
@@ -889,9 +853,9 @@
             }
 
             .hero {
-                height: auto;
-                min-height: 30svh;
-                padding: calc(var(--header-height) + 24px) 24px 24px;
+                height: 30svh;
+                min-height: 5svh;
+                padding: 24px;
             }
 
             .mq {
@@ -899,6 +863,7 @@
             }
             .mq div {
                 font-size: 1.25rem;
+                animation-duration: 28s;
             }
 
 
@@ -941,19 +906,23 @@
                 transform: none !important;
             }
 
+            .mq {
+                display: none;
+            }
             .mq div {
-                animation: none !important;
+                font-size: 1.25rem;
+                animation-duration: 28s;
             }
 
         }
 
         @keyframes marquee {
             from {
-                transform: translate3d(0, 0, 0);
+                transform: translateX(0);
             }
 
             to {
-                transform: translate3d(-50%, 0, 0);
+                transform: translateX(-50%);
             }
         }
     </style>
@@ -980,7 +949,7 @@
     </header>
 
     <div class='hero'>
-        <h1>Fredagsbar<br>344</h1>
+        <h1>Fridaybar<br>344</h1>
         <p><span id='cnt'>0</span> drinks. Tilt the bottle, tap pay, collect at the bar.</p>
     </div>
 
@@ -996,8 +965,6 @@
                 </label>
 
                 <input id="q" type="search" placeholder="Search drinks..." autocomplete="off" enterkeyhint="search">
-
-                <div id="chips" role="group" aria-label="Filter drinks"></div>
             </div>
 
             <div id="menu"></div>
@@ -1100,12 +1067,6 @@
             "Ginger Beer & Kombucha"
         ];
 
-        const ALCOHOL_FREE = [
-            "Non-Alc. Beers",
-            "Soft Drinks",
-            "Ginger Beer & Kombucha"
-        ];
-
         /*
          * Application state
          */
@@ -1114,7 +1075,6 @@
         let drinksById = {};
         let hiddenDrinkIds = new Set();
         let cart = {};
-        let activeGroup = null;
         let pendingPayment = null;
 
         let cardIsIdle = true;
@@ -1623,63 +1583,6 @@
             return row;
         }
 
-        function updateMarqueeSpeed() {
-            const track = $("mq");
-            const pixelsPerSecond = 70;
-
-            window.requestAnimationFrame(() => {
-                const halfWidth = track.scrollWidth / 2;
-
-                if (halfWidth > 0) {
-                    track.style.setProperty(
-                        "--mq-duration",
-                        `${halfWidth / pixelsPerSecond}s`
-                    );
-                }
-            });
-        }
-
-        function renderChips(categories) {
-            const chips = [
-                { label: "All", groups: null },
-                { label: "Alcohol-free", groups: ALCOHOL_FREE },
-                ...categories.map(category => ({
-                    label: category,
-                    groups: [category]
-                }))
-            ];
-
-            activeGroup = null;
-
-            const container = $("chips");
-            container.replaceChildren();
-
-            chips.forEach((chip, index) => {
-                const button = document.createElement("button");
-
-                button.type = "button";
-                button.textContent = chip.label;
-                button.className = index === 0 ? "on" : "";
-
-                button.addEventListener("click", () => {
-                    activeGroup = chip.groups;
-
-                    container
-                        .querySelectorAll("button")
-                        .forEach(other => {
-                            other.classList.toggle(
-                                "on",
-                                other === button
-                            );
-                        });
-
-                    filterMenu();
-                });
-
-                container.append(button);
-            });
-        }
-
         function renderMenu() {
             const items = visibleDrinks();
             const categories = getVisibleCategories(items);
@@ -1694,10 +1597,6 @@
                         } ✺ `;
                 })
                 .join("");
-
-            updateMarqueeSpeed();
-
-            renderChips(categories);
 
             $("menu").replaceChildren();
 
@@ -1757,14 +1656,8 @@
                             );
 
                             const matches = (
-                                (
-                                    !query ||
-                                    searchableText.includes(query)
-                                ) &&
-                                (
-                                    !activeGroup ||
-                                    activeGroup.includes(drink.cat)
-                                )
+                                !query ||
+                                searchableText.includes(query)
                             );
 
                             row.hidden = !matches;
@@ -2349,12 +2242,6 @@
                 });
             }
         );
-
-        window.addEventListener("resize", updateMarqueeSpeed);
-
-        if (document.fonts && document.fonts.ready) {
-            document.fonts.ready.then(updateMarqueeSpeed);
-        }
 
         document.addEventListener(
             "visibilitychange",
