@@ -551,7 +551,8 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/150368.jpg"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 41,
