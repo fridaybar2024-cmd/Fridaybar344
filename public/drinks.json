@@ -730,7 +730,8 @@
   "alc": true,
   "img": [
    "https://fadnord.dk/wp-content/uploads/sites/3/2025/01/Mikkeller-Hop-Shop-IPA-ds_1.png"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 55,
