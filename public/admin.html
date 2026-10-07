@@ -3,7 +3,7 @@
 <h1>STAFF</h1><div class=tabs><button id=t1 class=on>Orders</button><button id=t2>Drinks</button><button id=t3>Add drink</button></div><div id=msg></div>
 <div id=orders></div>
 <div id=drinks style="display:none"><div class=bar><select id=scope><option value=beers>Beers only</option><option value=all>All drinks</option></select><button id=bn>Remove NEW tags</button><button id=bs>Remove discounts</button></div><p><small>Tick = visible on the menu. Changes save immediately.</small></p><div id=dl></div></div>
-<div id=add style="display:none"><form id=f><label>Name<input type=text id=n required></label><label>Category<select id=c></select></label><label id=cw style="display:none">New category name<input type=text id=cn></label>
+<div id=add style="display:none"><form id=f><label>Name<input type=text id=n required></label><label>Category<select id=c></select></label><label id=cw style="display:none">New category name<input type=text id=cn></label><button onclick="editDrink(${d.id})">Edit</button>
 <label>Price (kr)<input type=number id=pr required min=1 max=2000></label><label>Container<select id=fm><option value=can>Can</option><option value=bottle>Bottle</option><option value=wine>Wine bottle</option></select></label>
 <label><input type=checkbox id=al checked> Contains alcohol (age check)</label><label><input type=checkbox id=nw checked> Show NEW tag</label><label>Discount note (optional)<input type=text id=sl placeholder="SALE 7 kr off"></label>
 <label>Image: Ambrosia product number OR image URL<input type=text id=im placeholder="e.g. 151489 or https://...  (empty = Google search if configured)"></label><button>Add drink</button></form></div>
@@ -18,6 +18,20 @@ async function loadOrders(){const r=await api('/orders');if(!r.ok){$('orders').t
  $('orders').innerHTML=r.j.map(o=>`<div class=o><div><b>${o.reference.slice(-6).toUpperCase()}</b> <span class="${o.status=='PAID'?'p':o.status=='FAILED'?'f':''}">${o.status}</span> - ${o.dkk} kr - ${new Date(o.created).toLocaleTimeString()}<br>${esc(o.desc)}</div><div>${o.status=='PAID'&&!o.served?`<button onclick="srv('${o.reference}')">Served</button>`:o.served?'served':''}</div></div>`).join('')}
 async function srv(r){await api('/orders/'+r+'/served','POST');loadOrders()}
 let LIST=[];
+ async function editDrink(id){
+  const d=(window.DRINKS||[]).find(x=>x.id===id);   // use whatever array your page keeps the drinks in
+  if(!d) return alert('Drink not found');
+  const name=prompt('Name',d.name); if(name===null) return;
+  const cat=prompt('Category',d.cat); if(cat===null) return;
+  const key=new URLSearchParams(location.search).get('key')||localStorage.getItem('key')||'';
+  const r=await fetch(`/api/drinks/${id}/update?key=${encodeURIComponent(key)}`,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:name.trim(),cat:cat.trim()})
+  });
+  if(!r.ok) return alert('Save failed: '+r.status);
+  Object.assign(d,await r.json());
+  location.reload();   // or call your existing list-render function
+}
 async function loadDrinks(){const r=await api('/drinks');if(!r.ok){$('dl').textContent='Unauthorised';return}LIST=r.j;
  const cats=[...new Set(LIST.map(d=>d.cat))];$('c').innerHTML=cats.map(c=>`<option>${esc(c)}</option>`).join('')+'<option value="__new">Other...</option>';
  $('dl').innerHTML=LIST.map(d=>`<div class="d ${d.hidden?'off':''}" data-id="${d.id}"><label><input type=checkbox data-f=vis ${d.hidden?'':'checked'}> <b>${esc(d.name)}</b> <small>${esc(d.cat)}</small></label><span><input type=number data-f=price value="${d.price}"> kr <label><input type=checkbox data-f=isNew ${d.isNew?'checked':''}> NEW</label> <input data-f=sale placeholder="discount note" value="${esc(d.sale||'')}"> <button data-a=img>Image</button> <button data-a=del>Delete</button></span></div>`).join('')}
