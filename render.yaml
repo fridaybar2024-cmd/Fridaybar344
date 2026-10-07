@@ -13,3 +13,6 @@ services:
       - {key: PUBLIC_URL, sync: false}
       - {key: ADMIN_KEY, sync: false}
       - {key: MIN_AGE, value: "18"}
+      - {key: GITHUB_REPO, value: fridaybar2024-cmd/Fridaybar344}
+      - {key: GITHUB_BRANCH, value: main}
+      - {key: GITHUB_TOKEN, sync: false}  
