@@ -141,7 +141,8 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/150546.jpg",
    "https://ambrosiagroup.dk/img/prod/150546.png"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 10,
