@@ -19,18 +19,13 @@ async function loadOrders(){const r=await api('/orders');if(!r.ok){$('orders').t
 async function srv(r){await api('/orders/'+r+'/served','POST');loadOrders()}
 let LIST=[];
  async function editDrink(id){
-  const d=(window.DRINKS||[]).find(x=>x.id===id);   // use whatever array your page keeps the drinks in
-  if(!d) return alert('Drink not found');
-  const name=prompt('Name',d.name); if(name===null) return;
-  const cat=prompt('Category',d.cat); if(cat===null) return;
-  const key=new URLSearchParams(location.search).get('key')||localStorage.getItem('key')||'';
-  const r=await fetch(`/api/drinks/${id}/update?key=${encodeURIComponent(key)}`,{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name:name.trim(),cat:cat.trim()})
-  });
-  if(!r.ok) return alert('Save failed: '+r.status);
-  Object.assign(d,await r.json());
-  location.reload();   // or call your existing list-render function
+  const d=LIST.find(x=>x.id===id); if(!d)return say('Drink not found');
+  const cats=[...new Set(LIST.map(x=>x.cat))];
+  const name=prompt('Name',d.name); if(name===null)return;
+  const cat=prompt('Category (existing: '+cats.join(' | ')+')',d.cat); if(cat===null)return;
+  const r=await api('/drinks/'+id+'/update','POST',{name:name.trim(),cat:cat.trim()});
+  say(r.ok?'Saved':'Failed: '+r.status);
+  if(r.ok)loadDrinks();
 }
 async function loadDrinks(){const r=await api('/drinks');if(!r.ok){$('dl').textContent='Unauthorised';return}LIST=r.j;
  const cats=[...new Set(LIST.map(d=>d.cat))];$('c').innerHTML=cats.map(c=>`<option>${esc(c)}</option>`).join('')+'<option value="__new">Other...</option>';
