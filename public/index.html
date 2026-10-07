@@ -95,23 +95,24 @@
         /* Header */
 
         .top {
-            position: fixed;
-            inset: 00  auto 0;
-            top: 0;
-            z-index: 20;
-
             display: flex;
+            /* position: fixed; */
+            /* inset: 00  auto 0; */
+            /* top: 0; */
+            /* z-index: 20; */
+            /* display: flex; */
             justify-content: space-between;
-
-            min-height: var(--header-height);
+            align-items: center;
+            width: 100%;
+            /* min-height: var(--header-height); */
             padding: 16px var(--page-padding) 12px;
-
             background: var(--black);
             color: var(--white);
-
+            gap: 12px;
+            /* width: revert-rule; */
             font-size: .8rem;
             font-weight: 700;
-            letter-spacing: .08em;
+            letter-spacing: 0.08em;
             line-height: 1;
             text-transform: uppercase;
         }
@@ -129,12 +130,11 @@
         }
 
         .hero h1 {
-            max-width: none;
-
-            font-size: clamp(3.8rem, 18vw, 9rem);
+            /* max-width: none; */
+            /* font-size: clamp(3.8rem, 18vw, 9rem); */
             font-weight: 900;
             letter-spacing: -.07em;
-            line-height: .82;
+            /* line-height: .82; */
             text-transform: uppercase;
         }
 
@@ -714,7 +714,7 @@
         @media (max-width: 860px) {
             :root {
                 --page-padding: 16px;
-                --header-height: 52px;
+                --header-height: 40px;
             }
 
             html {
@@ -727,22 +727,21 @@
             }
 
             .top {
+                padding: 14px 16px;
                 position: fixed;
-                inset: 0 0 auto 0;
-                justify-content: space-between;
-
-                top: 0;
-                z-index: 20;
-
-                min-height: var(--header-height);
-                padding:
-                    16px var(--page-padding) 12px;
-
-                background: var(--black);
-            }
-
-            .top span:last-child {
-                display: none;
+                max-height: var(--header-height);
+                /* display: flex; */
+                /* position: fixed; */
+                /* inset: 0 0 auto 0; */
+                /* justify-content: space-between; */
+                /* align-items: center; */
+                /* top: 0px; */
+                /* width: 100%; */
+                /* z-index: 20; */
+                /* min-height: var(--header-height); */
+                /* padding:
+                    16px var(--page-padding) 12px; */
+                /* background: var(--black); */
             }
 
             .hero {
@@ -754,7 +753,7 @@
 
             .hero h1 {
                 max-width: none;
-                font-size: clamp(3.8rem, 18vw, 8rem);
+                font-size: clamp(2.6rem, 13vw, 8rem);
                 line-height: .82;
             }
 
@@ -975,7 +974,7 @@
     </svg>
 
     <header class="top">
-        <span>Fredagsbar &copy;</span>
+        <span>Fredagsbar 344&copy; </span>
         <span>Fridge &rarr; Hand</span>
     </header>
 

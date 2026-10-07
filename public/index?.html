@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1,viewport-fit=cover'>
+    <meta name='theme-color' content='#000000'>
+    <meta name='apple-mobile-web-app-capable' content='yes'>
+    <link rel='manifest' href='manifest.webmanifest'>
+    <title>Fredagsbar 344</title>
+    <style>
+        :root {
+            --k: #000;
+            --w: #f2f0eb;
+            --r: #ff3b1f;
+            --mp: #5a78ff
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--k);
+            color: var(--w);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            overflow-x: clip
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 24px;
+            border-bottom: 1px solid #333;
+            font-weight: 700;
+            letter-spacing: .08em;
+            font-size: .8rem;
+            text-transform: uppercase
+        }
+
+        .hero {
+            height: 70svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px
+        }
+
+        .hero h1 {
+            font-size: clamp(2.6rem, 12.4vw, 15rem);
+            line-height: .82;
+            letter-spacing: -.06em;
+            font-weight: 900;
+            text-transform: uppercase
+        }
+
+        .hero p {
+            margin-top: 20px;
+            max-width: 40ch;
+            opacity: .7
+        }
+
+        .mq {
+            border-block: 1px solid #333;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 14px 0;
+            background: var(--w);
+            color: var(--k)
+        }
+
+        .mq div {
+            display: inline-block;
+            will-change: transform;
+            animation: m 30s linear infinite;
+            font-weight: 900;
+            font-size: 1.6rem;
+            text-transform: uppercase
+        }
+
+        @keyframes m {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .wrap {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr);
+            align-items: start
+        }
+
+        #sb {
+            position: sticky;
+            top: 0;
+            z-index: 15;
+            background: var(--k);
+            padding: 14px 24px 12px;
+            border-bottom: 1px solid #333
+        }
+
+        #chips {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+            overflow-x: auto;
+            scrollbar-width: none
+        }
+
+        #chips::-webkit-scrollbar {
+            display: none
+        }
+
+        #chips button {
+            flex: none;
+            background: none;
+            color: var(--w);
+            border: 1.5px solid var(--w);
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            cursor: pointer
+        }
+
+        #chips button.on {
+            background: var(--w);
+            color: var(--k)
+        }
+
+        #q {
+            width: 100%;
+            background: none;
+            border: 0;
+            border-bottom: 2px solid var(--w);
+            color: var(--w);
+            font-size: 1.4rem;
+            padding: 8px 0;
+            outline: none;
+            font-family: inherit;
+            text-transform: uppercase;
+            letter-spacing: -.02em
+        }
+
+        #q::placeholder {
+            color: #777
+        }
+
+        #none {
+            display: none;
+            padding: 40px 24px;
+            opacity: .6
+        }
+
+        #stage {
+            position: sticky;
+            top: 0;
+            align-self: start;
+            height: 100vh;
+            height: 100svh;
+            border-left: 1px solid #333;
+            background: radial-gradient(circle at 50% 45%, #26231f, #000 72%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            perspective: 900px;
+            overflow: hidden
+        }
+
+        #card {
+            flex: 1 1 0;
+            min-height: 0;
+            width: min(300px, 70%);
+            margin-top: 40px;
+            transform-style: preserve-3d;
+            transition: transform .12s ease-out;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none
+        }
+
+        #card img,
+        #card svg {
+            max-width: 100%;
+            max-height: 100%;
+            background: none;
+            transform: translateZ(40px);
+            pointer-events: none
+        }
+
+        #card img.rm {
+            filter: url(#kw)
+        }
+
+        #gs {
+            position: absolute;
+            bottom: -4%;
+            left: 20%;
+            right: 20%;
+            height: 26px;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, .75), transparent 70%)
+        }
+
+        #info {
+            flex: none;
+            align-self: stretch;
+            padding: 20px 24px 28px;
+            pointer-events: none
+        }
+
+        #info small {
+            opacity: .6;
+            letter-spacing: .15em;
+            text-transform: uppercase
+        }
+
+        #info h3 {
+            font-size: clamp(1.6rem, 3vw, 2.6rem);
+            letter-spacing: -.04em;
+            text-transform: uppercase;
+            line-height: .95;
+            margin: 6px 0
+        }
+
+        #info b {
+            font-size: 1.6rem
+        }
+
+        #hint {
+            position: absolute;
+            top: 14px;
+            right: 24px;
+            font-size: .7rem;
+            opacity: .5;
+            letter-spacing: .1em;
+            text-transform: uppercase
+        }
+
+        section {
+            padding: 50px 24px 10px
+        }
+
+        h2 {
+            font-size: clamp(2.2rem, 6vw, 6rem);
+            letter-spacing: -.05em;
+            line-height: .85;
+            text-transform: uppercase;
+            margin-bottom: 24px
+        }
+
+        h2 sup {
+            font-size: .2em;
+            color: var(--r);
+            letter-spacing: 0;
+            vertical-align: top
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr) auto 130px;
+            gap: 12px;
+            align-items: center;
+            padding: 16px 0;
+            border-top: 1px solid #333;
+            transition: padding .25s, background .25s, color .25s;
+            cursor: pointer
+        }
+
+        .row:hover,
+        .row.sel {
+            background: var(--w);
+            color: var(--k);
+            padding-inline: 14px
+        }
+
+        .row .n {
+            opacity: .4;
+            font-size: .75rem
+        }
+
+        .row .t {
+            min-width: 0;
+            overflow-wrap: anywhere;
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -.03em;
+            line-height: 1.05;
+            text-transform: uppercase
+        }
+
+        .row .t small {
+            display: block;
+            margin-top: 5px;
+            font-size: .7rem;
+            font-weight: 400;
+            letter-spacing: 0;
+            line-height: 1.2;
+            opacity: .6;
+            text-transform: none
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--r);
+            color: #fff;
+            font-size: .6rem;
+            padding: 2px 6px;
+            margin-left: 8px;
+            letter-spacing: .1em;
+            vertical-align: middle
+        }
+
+        .row .p {
+            font-size: 1.2rem;
+            font-weight: 700
+        }
+
+        .q {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: flex-end
+        }
+
+        .q button {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1.5px solid currentColor;
+            background: none;
+            color: inherit;
+            font-size: 1.3rem;
+            cursor: pointer
+        }
+
+        .q button:hover {
+            background: var(--r);
+            border-color: var(--r);
+            color: #fff
+        }
+
+        .q span {
+            min-width: 18px;
+            text-align: center;
+            font-weight: 700
+        }
+
+        footer {
+            padding: 60px 24px 170px;
+            opacity: .5;
+            font-size: .8rem
+        }
+
+        #dock {
+            position: fixed;
+            left: 12px;
+            right: 12px;
+            bottom: max(12px, env(safe-area-inset-bottom));
+            background: var(--w);
+            color: var(--k);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            z-index: 30;
+            transform: translateY(160%);
+            transition: transform .35s cubic-bezier(.2, .9, .2, 1)
+        }
+
+        #dock.on {
+            transform: none
+        }
+
+        #dock b {
+            font-size: 1.9rem;
+            letter-spacing: -.04em
+        }
+
+        #dock small {
+            display: block;
+            opacity: .6;
+            max-width: 42vw;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap
+        }
+
+        #pay {
+            background: var(--mp);
+            color: #fff;
+            border: 0;
+            padding: 16px 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            cursor: pointer;
+            font-size: .9rem
+        }
+
+        #pay:disabled {
+            opacity: .5
+        }
+
+        .ovl {
+            position: fixed;
+            inset: 0;
+            background: var(--k);
+            z-index: 50;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            padding: 24px
+        }
+
+        .ovl.on {
+            display: flex
+        }
+
+        .ovl h1 {
+            font-size: clamp(3rem, 14vw, 14rem);
+            line-height: .85;
+            letter-spacing: -.06em;
+            text-transform: uppercase
+        }
+
+        .ovl p {
+            margin-top: 20px;
+            opacity: .75;
+            max-width: 48ch
+        }
+
+        .ovl .b {
+            margin-top: 22px;
+            align-self: flex-start;
+            background: var(--w);
+            color: #000;
+            border: 0;
+            padding: 14px 22px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: .9rem
+        }
+
+        .ovl .b.mp {
+            background: var(--mp);
+            color: #fff
+        }
+
+        @media(max-width:700px) {
+            .wrap {
+                display: block
+            }
+
+            #stage {
+                top: 0;
+                height: 44vh;
+                height: 44svh;
+                z-index: 5;
+                border: 0;
+                border-bottom: 1px solid #333
+            }
+
+            #card {
+                flex: none;
+                height: calc(44vh - 96px);
+                height: calc(44svh - 96px);
+                margin-top: 12px
+            }
+
+            #info {
+                padding: 8px 16px 12px
+            }
+
+            #sb {
+                top: 44vh;
+                top: 44svh;
+                z-index: 4;
+                padding: 10px 16px
+            }
+
+            #hint {
+                display: none
+            }
+
+            .top {
+                padding: 14px 16px
+            }
+
+            .row {
+                grid-template-columns: minmax(0, 1fr) auto
+            }
+
+            .row .n {
+                display: none
+            }
+
+            .row .q {
+                grid-column: 1/-1;
+                justify-content: flex-start
+            }
+
+            section {
+                padding-top: 30px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <svg width='0' height='0' style='position:absolute'>
+        <filter id='kw' color-interpolation-filters='sRGB'>
+            <feColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -4.2 -4.2 -4.2 0 11.7' />
+            <feComposite in2='SourceAlpha' operator='in' />
+        </filter>
+    </svg>
+    <div class='top'><span>Fredagsbar 344 &copy;</span><span>Fridge &rarr; Hand</span></div>
+    <div class='hero'>
+        <h1>Fredagsbar<br>344</h1>
+        <p><span id='cnt'>0</span> drinks. Tilt the bottle, tap pay, collect at the bar.</p>
+    </div>
+    <div class='mq'>
+        <div id='mq'></div>
+    </div>
+    <div class='wrap'>
+        <main>
+            <div id='sb'><input id='q' type='search' placeholder='Search drinks...' autocomplete='off'>
+                <div id='chips'></div>
+            </div>
+            <div id='menu'></div>
+            <div id='none'>No drinks found.</div>
+        </main>
+        <aside id='stage'>
+            <div id='card'>
+                <div id='art' style='display:contents'></div>
+                <div id='gs'></div>
+            </div>
+            <div id='hint'>Move cursor to tilt</div>
+            <div id='info'><small id='ic'></small>
+                <h3 id='in'></h3><b id='ip'></b>
+            </div>
+        </aside>
+    </div>
+    <footer>Drink responsibly. 18+ for alcohol (age checked in MobilePay). Prices in DKK.</footer>
+    <div id='dock'>
+        <div><b id='tot'>0 kr</b><small id='sum'></small></div><button id='pay'>Pay with MobilePay &rarr;</button>
+    </div>
+    <div class='ovl' id='mp'>
+        <h1 id='mh'></h1>
+        <p id='mt'></p><a class='b mp' id='mgo' target='_blank' rel='noopener'>Open MobilePay</a><button class='b'
+            id='mcp'>Copy amount</button><button class='b' id='mdone'>I have paid</button><button class='b'
+            id='mcx'>Cancel</button>
+    </div>
+    <div class='ovl' id='ov'>
+        <h1 id='ovh'></h1>
+        <p id='ovp'></p><button class='b' onclick="location.href='/'">Back to menu</button>
+    </div>
+    <script>
+        const $ = id => document.getElementById(id);
+        const ORDER = ['Normal Beers', 'Non-Alc. Beers', 'Ciders and Other Alcoholic Drinks', 'Wine', 'Soft Drinks', 'Ginger Beer & Kombucha'];
+        const ALCFREE = ['Non-Alc. Beers', 'Soft Drinks', 'Ginger Beer & Kombucha'];
+        let grp = null, DRINKS = [], byId = {}, hid = new Set(), cart = {}, pending = null, idle = true, t = 0;
+        const PAL = [[/guinn/i, ['#0b0b0b', '#e8c872', '#e8c872']], [/coca-cola zero/i, ['#111', '#fff', '#e60012']], [/coca/i, ['#d6001c', '#fff', '#fff']], [/fanta/i, ['#ff8a00', '#fff', '#5b2a86']], [/monster/i, ['#0b0b0b', '#7bff00', '#7bff00']], [/erdinger/i, ['#f2efe6', '#1a3b7a', '#c8a22c']], [/desperados/i, ['#e8b400', '#7a0c0c', '#7a0c0c']], [/krenkerup j/i, ['#9a1020', '#f1e3c0', '#f1e3c0']], [/tuborg p/i, ['#f0d44a', '#1a3a7a', '#1a3a7a']], [/tuborg twist/i, ['#f2e04a', '#0b6b3a', '#0b6b3a']], [/kombucha|combucha/i, ['#c75a8a', '#fff', '#fff']], [/il capolavoro/i, ['#e8e0b0', '#4a5a1a', '#4a5a1a']], [/lindeman/i, ['#f2b6b6', '#7a1a2a', '#7a1a2a']], [/cuvee|cruse/i, ['#4a0f1e', '#e8d8b0', '#e8d8b0']]];
+        function pal(n) { for (const [r, p] of PAL) if (r.test(n)) return p; let h = 0; for (const c of n) h = (h * 31 + c.charCodeAt(0)) % 360; return ['hsl(' + h + ',55%,28%)', '#f2f0eb', '#f2f0eb'] }
+        function placeholder(d) {
+            const [bg, fg, ac] = pal(d.name), parts = d.name.split(' - '), tt = (parts.length > 1 ? parts.slice(1).join(' - ') : d.name).toUpperCase();
+            const L = []; let cur = ''; for (const w of tt.split(' ')) { if ((cur + ' ' + w).trim().length > 11 && cur) { L.push(cur); cur = w } else cur = (cur + ' ' + w).trim() } L.push(cur);
+            const fs = L.length > 3 ? 15 : L.length > 2 ? 18 : 22, y0 = (d.fmt === 'can' ? 190 : 262) - (L.length - 1) * fs * .55;
+            const txt = L.map((l, i) => `<text x='100' y='${y0 + i * fs * 1.1}' text-anchor='middle' font-family='Helvetica,Arial' font-weight='900' font-size='${fs}' fill='${fg}'>${l.replace(/&/g, '&amp;')}</text>`).join('');
+            const shape = d.fmt === 'can' ? `<rect x='30' y='30' width='140' height='300' rx='16' fill='#cfd3d8'/><rect x='30' y='70' width='140' height='220' fill='${bg}'/><rect x='40' y='22' width='120' height='14' rx='6' fill='#aab0b8'/><rect x='48' y='78' width='104' height='3' fill='${ac}'/>`
+                : `<path d='M80 10h40v22h-4v70c0 18 34 40 34 70v150c0 10-6 16-16 16H62c-10 0-16-6-16-16V172c0-30 34-52 34-70V32z' fill='${d.fmt === 'wine' ? '#1d3b1f' : '#7a4a10'}'/><rect x='46' y='200' width='108' height='130' fill='${bg}'/><rect x='78' y='4' width='44' height='12' rx='3' fill='${ac}'/><rect x='58' y='206' width='84' height='3' fill='${ac}'/>`;
+            return `<svg viewBox='0 0 200 360'>${shape}${txt}</svg>`
+        }
+        const srcs = d => ['img/' + d.id + '.png', ...(d.img || [])];
+        function setSrc(el, i) { const d = byId[el.dataset.id], s = srcs(d); if (i >= s.length) { const w = document.createElement('div'); w.innerHTML = placeholder(d); el.replaceWith(w.firstChild); return } el.dataset.n = i; el.classList.toggle('rm', /^https?:/.test(s[i])); el.src = s[i] }
+        window.imgFail = el => setSrc(el, +el.dataset.n + 1);
+        function art(d) { const w = document.createElement('div'); w.innerHTML = `<img referrerpolicy='no-referrer' data-id='${d.id}' data-n='0' alt='' onerror='imgFail(this)'>`; const el = w.firstChild; setSrc(el, 0); return el }
+        const norm = s => s.toLowerCase().replaceAll('ø', 'o').replaceAll('æ', 'ae').replaceAll('å', 'a').replaceAll('é', 'e').replaceAll('è', 'e').replaceAll('ö', 'o').replaceAll('ü', 'u').replaceAll('ä', 'a');
+        function build() {
+            const vis = DRINKS.filter(d => !hid.has(d.id));
+            const cats = [...ORDER.filter(c => vis.some(d => d.cat === c)), ...[...new Set(vis.map(d => d.cat))].filter(c => !ORDER.includes(c))];
+            $('cnt').textContent = vis.length;
+            $('mq').innerHTML = Array(6).fill('Fredagsbar 344 ✺ ' + cats.join(' ✺ ') + ' ✺ ').join('');
+            $('menu').innerHTML = cats.map(c => {
+                const items = vis.filter(d => d.cat === c);
+                return `<section><h2>${c}<sup>${String(items.length).padStart(2, '0')}</sup></h2>` + items.map(d => `<div class='row' id='r${d.id}' data-id='${d.id}'><span class='n'>${String(d.id + 1).padStart(2, '0')}</span><div class='t'>${d.name}${d.isNew ? "<span class='tag'>NEW</span>" : ''}${d.sale ? "<span class='tag'>SALE</span>" : ''}<small>${d.sale || ''}</small></div><span class='p'>${d.price} kr</span><div class='q'><button data-d='-1' aria-label='less'>-</button><span id='q${d.id}'>0</span><button data-d='1' aria-label='more'>+</button></div></div>`).join('') + '</section>'
+            }).join('');
+            const chips = [{ l: 'All', c: null }, { l: 'Alcohol-free', c: ALCFREE }, ...cats.map(c => ({ l: c, c: [c] }))];
+            $('chips').innerHTML = chips.map((x, i) => `<button data-i='${i}' class='${i ? '' : 'on'}'>${x.l}</button>`).join('');
+            $('chips').onclick = e => {
+                const b = e.target.closest('button'); if (!b) return;
+                grp = chips[+b.dataset.i].c;
+                $('chips').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+                filter()
+            };
+            if (vis.length) show(vis[0].id);
+        }
+        function filter() {
+            const q = norm($('q').value.trim()); let total = 0;
+            document.querySelectorAll('#menu section').forEach(s => {
+                let n = 0; s.querySelectorAll('.row').forEach(r => { const d = byId[r.dataset.id], ok = (!q || norm(d.name + ' ' + d.cat).includes(q)) && (!grp || grp.includes(d.cat)); r.style.display = ok ? '' : 'none'; if (ok) n++ });
+                s.style.display = n ? '' : 'none'; s.querySelector('sup').textContent = String(n).padStart(2, '0'); total += n
+            });
+            $('none').style.display = total ? 'none' : 'block'
+        }
+        $('q').addEventListener('input', filter);
+        $('menu').addEventListener('click', e => { const r = e.target.closest('.row'); if (!r) return; const id = +r.dataset.id, b = e.target.closest('button'); if (b) chg(id, +b.dataset.d); show(id) });
+        function chg(id, d) { cart[id] = Math.max(0, Math.min(20, (cart[id] || 0) + d)); $('q' + id).textContent = cart[id]; upd() }
+        const lines = () => Object.entries(cart).filter(([, q]) => q > 0).map(([id, q]) => [byId[id], q]);
+        const total = () => lines().reduce((s, [d, q]) => s + d.price * q, 0);
+        const desc = () => lines().map(([d, q]) => q + 'x ' + d.name).join(', ');
+        function upd() { $('tot').textContent = total() + ' kr'; $('sum').textContent = desc(); $('dock').classList.toggle('on', total() > 0) }
+        function show(id) {
+            document.querySelectorAll('.row.sel').forEach(r => r.classList.remove('sel')); const r = $('r' + id); if (r) r.classList.add('sel');
+            const d = byId[id]; $('ic').textContent = d.cat; $('in').textContent = d.name; $('ip').textContent = d.price + ' kr'; $('art').replaceChildren(art(d))
+        }
+        const card = $('card'), stage = $('stage');
+        function tilt(x, y) { const r = stage.getBoundingClientRect(), px = Math.max(-1, Math.min(1, (x - r.left - r.width / 2) / (r.width / 2))), py = Math.max(-1, Math.min(1, (y - r.top - r.height / 2) / (r.height / 2))); card.style.transform = `rotateY(${px * 14}deg) rotateX(${-py * 10}deg)` }
+        addEventListener('mousemove', e => { idle = false; tilt(e.clientX, e.clientY) });
+        addEventListener('touchmove', e => { idle = false; tilt(e.touches[0].clientX, e.touches[0].clientY) }, { passive: true });
+        addEventListener('deviceorientation', e => { if (e.gamma == null) return; idle = false; card.style.transform = `rotateY(${Math.max(-14, Math.min(14, e.gamma / 3))}deg) rotateX(${Math.max(-10, Math.min(10, ((e.beta || 45) - 45) / 4))}deg)` });
+        document.addEventListener('mouseleave', () => idle = true);
+        setInterval(() => { if (idle) { t += .05; card.style.transform = `rotateY(${Math.sin(t) * 10}deg) rotateX(${Math.cos(t * .7) * 4}deg)` } }, 40);
+        const showOv = (h, p) => { $('mp').classList.remove('on'); $('ovh').innerHTML = h; $('ovp').textContent = p; $('ov').classList.add('on') };
+        function fallbackScreen(j) { pending = j; $('mh').innerHTML = 'Pay<br>' + j.amount + ' kr'; $('mt').textContent = 'Open MobilePay, enter exactly ' + j.amount + ' kr and write ' + j.reference.slice(-6).toUpperCase() + ' as the message. Then tap I have paid and show the next screen to the bartender.'; $('mgo').href = j.fallbackUrl; $('mp').classList.add('on') }
+        $('mcp').onclick = () => { navigator.clipboard && navigator.clipboard.writeText(String(pending.amount)); $('mcp').textContent = 'Copied' };
+        $('mdone').onclick = () => showOv('Show this<br>at the bar', desc() + ' - ' + pending.amount + ' kr - code ' + pending.reference.slice(-6).toUpperCase());
+        $('mcx').onclick = () => $('mp').classList.remove('on');
+        $('pay').onclick = async () => {
+            $('pay').disabled = true; $('pay').textContent = 'Opening...';
+            try {
+                const r = await fetch('/api/create-payment', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: lines().map(([d, qty]) => ({ id: d.id, qty })) }) });
+                const j = await r.json();
+                if (j.redirectUrl) { location.assign(j.redirectUrl); return }
+                if (j.fallbackUrl) fallbackScreen(j); else if (j.error === 'unavailable') showOv('Sorry.', 'One of the drinks just sold out. Reload the menu.'); else throw 0;
+            } catch (e) { showOv('Oops.', 'Payment could not be started. Please ask the bartender.') }
+            $('pay').disabled = false; $('pay').textContent = 'Pay with MobilePay →'
+        };
+        const ref = new URLSearchParams(location.search).get('ref');
+        if (ref) {
+            showOv('Checking<br>payment...', 'Hold on, asking MobilePay.'); let n = 0;
+            const poll = async () => {
+                try {
+                    const j = await (await fetch('/api/status/' + ref)).json();
+                    if (j.status === 'PAID') showOv('Paid.<br>Cheers.', 'Show this at the bar: ' + j.desc + ' (' + j.total + ' kr). Code ' + j.code);
+                    else if (j.status === 'FAILED') showOv('Cancelled.', 'No money moved. Your liver thanks you.');
+                    else if (++n < 45) setTimeout(poll, 2000); else showOv('Still pending.', 'Ask the bartender before paying again.')
+                } catch (e) { if (++n < 45) setTimeout(poll, 3000) }
+            };
+            setTimeout(poll, 2500)
+        }
+        (async () => {
+            try { DRINKS = await (await fetch('drinks.json')).json() } catch (e) { document.body.innerHTML = '<p style="padding:24px;color:#fff">Menu could not be loaded. Start the server (npm start) and open http://localhost:3000</p>'; return }
+            DRINKS.forEach(d => byId[d.id] = d);
+            try { hid = new Set(await (await fetch('/api/hidden')).json()) } catch (e) { }
+            build();
+        })();
+    </script>
+</body>
+
+</html>
