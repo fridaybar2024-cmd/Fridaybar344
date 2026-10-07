@@ -590,7 +590,8 @@
   "alc": false,
   "img": [
    "https://drydrinker.com/cdn/shop/files/brooklyn-sfx-single-330ml-can.jpg?v=1764059525&width=2048"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 44,
