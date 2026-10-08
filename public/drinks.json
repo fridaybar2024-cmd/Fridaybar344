@@ -330,7 +330,8 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": []
+  "img": [],
+  "hidden": true
  },
  {
   "id": 24,
