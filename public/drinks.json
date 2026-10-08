@@ -745,5 +745,16 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/154315.png"
   ]
+ },
+ {
+  "id": 56,
+  "name": "Desperados",
+  "price": 27,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "bottle",
+  "alc": true,
+  "img": []
  }
 ]
