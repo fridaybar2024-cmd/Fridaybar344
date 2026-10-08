@@ -747,17 +747,6 @@
   ]
  },
  {
-  "id": 56,
-  "name": "Desperados",
-  "price": 27,
-  "cat": "Normal Beers",
-  "isNew": true,
-  "sale": "",
-  "fmt": "bottle",
-  "alc": true,
-  "img": []
- },
- {
   "id": 57,
   "name": "Herslev IPA",
   "price": 44,
