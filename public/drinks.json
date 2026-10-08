@@ -86,7 +86,8 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/75428.jpg",
    "https://ambrosiagroup.dk/img/prod/75428.png"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 6,
