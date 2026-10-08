@@ -767,5 +767,16 @@
   "fmt": "can",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 58,
+  "name": "Ish Spritz",
+  "price": 29,
+  "cat": "Soft Drinks",
+  "isNew": true,
+  "sale": "",
+  "fmt": "can",
+  "alc": false,
+  "img": []
  }
 ]
