@@ -11,23 +11,21 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/150360.jpg",
    "https://ambrosiagroup.dk/img/prod/150360.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 1,
   "name": "Birra Moretti",
   "price": 27,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/76421.png",
    "https://ambrosiagroup.dk/img/prod/76421.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 2,
@@ -49,45 +47,42 @@
   "name": "Brøl - Like you give a deamn",
   "price": 33,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/16987.png",
    "https://ambrosiagroup.dk/img/prod/16987.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 4,
   "name": "To Øl - Tropical Rumble",
   "price": 32,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/75430.jpg",
    "https://ambrosiagroup.dk/img/prod/75430.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 5,
   "name": "To Øl - Whirl domination",
   "price": 31,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/75428.jpg",
    "https://ambrosiagroup.dk/img/prod/75428.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 6,
@@ -98,59 +93,55 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 7,
   "name": "To Øl - Brondbajer",
   "price": 34,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/154639.png",
    "https://ambrosiagroup.dk/img/prod/154639.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 8,
   "name": "Kingfisher",
   "price": 30,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/54521.png",
    "https://ambrosiagroup.dk/img/prod/54521.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 9,
   "name": "Peroni Chill Lemon",
   "price": 32,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/150546.jpg",
    "https://ambrosiagroup.dk/img/prod/150546.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 10,
   "name": "Herslev Under Solen",
   "price": 34,
-  "cat": "Non-Alc. Beers",
+  "cat": "Normal Beers",
   "isNew": false,
   "sale": "",
   "fmt": "can",
@@ -183,8 +174,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/152732.jpg",
    "https://ambrosiagroup.dk/img/prod/152732.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 13,
@@ -197,8 +187,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/01987.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 14,
@@ -211,8 +200,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/8411.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 15,
@@ -225,8 +213,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/154168.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 16,
@@ -239,8 +226,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/705.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 17,
@@ -277,8 +263,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/9653.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 20,
@@ -304,8 +289,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/14322.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 22,
@@ -318,8 +302,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/153985.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 23,
@@ -330,13 +313,12 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 24,
   "name": "1664 Blanc",
-  "price": 34,
+  "price": 30,
   "cat": "Normal Beers",
   "isNew": false,
   "sale": "",
@@ -357,8 +339,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/01788.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 26,
@@ -380,8 +361,7 @@
   "sale": "SALE!! DKK - 7.00",
   "fmt": "can",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 28,
@@ -394,8 +374,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/152891.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 29,
@@ -406,8 +385,7 @@
   "sale": "",
   "fmt": "wine",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 30,
@@ -420,8 +398,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/6407.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 31,
@@ -447,8 +424,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/153634.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 33,
@@ -472,8 +448,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/36541.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 35,
@@ -499,8 +474,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/152318.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 37,
@@ -511,15 +485,14 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 38,
   "name": "Sapporo Black",
   "price": 43,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
@@ -533,7 +506,7 @@
   "name": "Tsingtao",
   "price": 28,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
@@ -552,22 +525,20 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/150368.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 41,
   "name": "Ichnusa non filtrata",
   "price": 27,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/8426.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 42,
@@ -578,8 +549,7 @@
   "sale": "SALE!! DKK - 7.00",
   "fmt": "can",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 43,
@@ -614,8 +584,7 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 46,
@@ -641,8 +610,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/6724.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 48,
@@ -686,7 +654,7 @@
   "name": "Thrive Peak",
   "price": 35,
   "cat": "Non-Alc. Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": false,
@@ -699,7 +667,7 @@
   "name": "Åben - circle session IPA",
   "price": 33,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
@@ -716,56 +684,32 @@
   "sale": "",
   "fmt": "wine",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 54,
   "name": "Mikkeller Hop Shop",
   "price": 30,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
   "img": [
    "https://fadnord.dk/wp-content/uploads/sites/3/2025/01/Mikkeller-Hop-Shop-IPA-ds_1.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 55,
   "name": "Thrive Unwind IPA",
   "price": 35,
   "cat": "Non-Alc. Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/154315.png"
   ]
- },
- {
-  "id": 57,
-  "name": "Herslev IPA",
-  "price": 44,
-  "cat": "Normal Beers",
-  "isNew": true,
-  "sale": "",
-  "fmt": "can",
-  "alc": true,
-  "img": []
- },
- {
-  "id": 58,
-  "name": "Ish Spritz",
-  "price": 29,
-  "cat": "Soft Drinks",
-  "isNew": true,
-  "sale": "",
-  "fmt": "can",
-  "alc": false,
-  "img": []
  }
 ]
