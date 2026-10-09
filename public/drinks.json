@@ -754,5 +754,16 @@
   "fmt": "bottle",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 57,
+  "name": "TO ØL - 45 DAYS ORGANIC",
+  "price": 25,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "can",
+  "alc": true,
+  "img": []
  }
 ]
