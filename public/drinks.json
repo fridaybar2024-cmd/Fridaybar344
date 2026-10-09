@@ -11,7 +11,8 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/150360.jpg",
    "https://ambrosiagroup.dk/img/prod/150360.png"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 1,
@@ -68,8 +69,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/75430.jpg",
    "https://ambrosiagroup.dk/img/prod/75430.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 5,
@@ -83,8 +83,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/75428.jpg",
    "https://ambrosiagroup.dk/img/prod/75428.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 6,
@@ -95,8 +94,7 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 7,
@@ -110,8 +108,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/154639.png",
    "https://ambrosiagroup.dk/img/prod/154639.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 8,
@@ -125,8 +122,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/54521.png",
    "https://ambrosiagroup.dk/img/prod/54521.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 9,
@@ -140,8 +136,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/150546.jpg",
    "https://ambrosiagroup.dk/img/prod/150546.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 10,
@@ -180,8 +175,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/152732.jpg",
    "https://ambrosiagroup.dk/img/prod/152732.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 13,
@@ -194,8 +188,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/01987.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 14,
@@ -208,8 +201,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/8411.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 15,
@@ -222,8 +214,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/154168.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 16,
@@ -721,5 +712,16 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/154315.png"
   ]
+ },
+ {
+  "id": 56,
+  "name": "Leffe",
+  "price": 30,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "bottle",
+  "alc": true,
+  "img": []
  }
 ]
