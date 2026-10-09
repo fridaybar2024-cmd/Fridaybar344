@@ -677,8 +677,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/154872.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 51,
@@ -715,7 +714,8 @@
   "sale": "",
   "fmt": "wine",
   "alc": true,
-  "img": []
+  "img": [],
+  "hidden": true
  },
  {
   "id": 54,
