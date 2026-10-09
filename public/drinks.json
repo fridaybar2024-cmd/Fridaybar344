@@ -95,7 +95,8 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": []
+  "img": [],
+  "hidden": true
  },
  {
   "id": 7,
