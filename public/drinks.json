@@ -444,7 +444,8 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/153634.png"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 33,
