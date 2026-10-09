@@ -403,7 +403,8 @@
   "sale": "",
   "fmt": "wine",
   "alc": true,
-  "img": []
+  "img": [],
+  "hidden": true
  },
  {
   "id": 30,
