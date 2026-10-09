@@ -766,5 +766,16 @@
   "fmt": "can",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 58,
+  "name": "HERSLEV INDIA PALE ALE",
+  "price": 40,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "can",
+  "alc": true,
+  "img": []
  }
 ]
