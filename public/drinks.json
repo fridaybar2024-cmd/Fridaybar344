@@ -377,7 +377,8 @@
   "sale": "SALE!! DKK - 7.00",
   "fmt": "can",
   "alc": true,
-  "img": []
+  "img": [],
+  "hidden": true
  },
  {
   "id": 28,
