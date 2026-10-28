@@ -18,8 +18,9 @@ const orders = new Map(load('orders.json', []));
 const hidden = new Set(load('hidden.json', []));
 for (const d of DRINKS) if (d.hidden) hidden.add(d.id);
 const save = () => fs.writeFileSync('orders.json', JSON.stringify([...orders]));
-const saveHidden = () => { fs.writeFileSync('hidden.json', JSON.stringify([...hidden])); saveDrinks('Visibility change') };
-// optional backup of drinks.json and images to GitHub ([skip render] avoids a redeploy per edit)
+const saveHidden = () => { fs.writeFileSync('hidden.json', JSON.stringify([...hidden])); saveDrinks('Visibility change'); };
+
+// GitHub sync. Normal edits commit with [skip render]; the admin Deploy button commits without it.
 let gq = Promise.resolve();
 function gh(p, buf, msg) {
   if (!GITHUB_TOKEN || !GITHUB_REPO) return;
@@ -27,10 +28,11 @@ function gh(p, buf, msg) {
     try {
       const url = `https://api.github.com/repos/${GITHUB_REPO}/contents/${p}`;
       const h = { Authorization: `Bearer ${GITHUB_TOKEN}`, 'User-Agent': 'bar', 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' };
-      const g = await fetch(url + '?ref=' + GITHUB_BRANCH, { headers: h }); const sha = g.ok ? (await g.json()).sha : undefined;
-      const r = await fetch(url, { method: 'PUT', headers: h, body: JSON.stringify({ message: '[skip render] ' + msg, content: buf.toString('base64'), branch: GITHUB_BRANCH, sha }) });
+      const g = await fetch(url + '?ref=' + GITHUB_BRANCH, { headers: h });
+      const sha = g.ok ? (await g.json()).sha : undefined;
+      const r = await fetch(url, { method: 'PUT', headers: h, body: JSON.stringify({ message: msg, content: buf.toString('base64'), branch: GITHUB_BRANCH, sha }) });
       if (!r.ok) console.error('github sync', r.status, await r.text());
-    } catch (e) { console.error('github sync', e) }
+    } catch (e) { console.error('github sync', e); }
   });
 }
 function saveDrinks(msg) {
@@ -39,6 +41,7 @@ function saveDrinks(msg) {
   fs.writeFileSync(DFILE, s);
   gh('public/drinks.json', Buffer.from(s), msg || 'Update drinks');
 }
+
 // image pull: Ambrosia number, direct URL, or Google image search; white background removed
 const UA = { 'User-Agent': 'Mozilla/5.0' };
 async function googleUrls(name, fmt) {
@@ -61,17 +64,19 @@ async function pullImage(d, imageUrl, ambrosiaNo) {
   if (!urls.length) return { ok: false, error: 'No image source: enter an Ambrosia number or image URL, or set GOOGLE_API_KEY and GOOGLE_CX' };
   for (const u of urls) {
     try {
-      const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) }); if (!r.ok) throw new Error(String(r.status));
+      const r = await fetch(u, { headers: UA, signal: AbortSignal.timeout(20000) });
+      if (!r.ok) throw new Error(String(r.status));
       const png = await toCutout(Buffer.from(await r.arrayBuffer()));
       fs.writeFileSync(path.join(DATA_DIR, 'img', d.id + '.png'), png);
-      gh(`public/img/${d.id}.png`, png, `Image for ${d.name}`);
+      gh(`public/img/${d.id}.png`, png, `[skip render] Image for ${d.name}`);
       return { ok: true, source: u };
-    } catch (e) { console.error('image', u, e.message) }
+    } catch (e) { console.error('image', u, e.message); }
   }
   return { ok: false, error: 'None of the image sources worked' };
 }
 
-const app = express(); app.use(express.json({ limit: '20kb' }));
+const app = express();
+app.use(express.json({ limit: '20kb' }));
 const FIX = `(()=>{const vis=r=>getComputedStyle(r).display!=='none';const rows=[...document.querySelectorAll('.row')];document.querySelectorAll('section').forEach(s=>{const n=[...s.querySelectorAll('.row')].filter(vis).length;if(!n)s.style.display='none';else{const u=s.querySelector('sup');if(u)u.textContent=String(n).padStart(2,'0')}});const f=rows.find(vis);if(f&&!vis(rows[0]))f.click()})()`;
 app.get(['/', '/index.html'], (_q, res) => {
   let h = fs.readFileSync('public/index.html', 'utf8');
@@ -86,15 +91,19 @@ let tok = { v: null, exp: 0 };
 async function token() {
   if (tok.v && Date.now() < tok.exp) return tok.v;
   const r = await fetch(`${B}/accesstoken/get`, { method: 'POST', headers: { client_id: CLIENT_ID, client_secret: CLIENT_SECRET, 'Ocp-Apim-Subscription-Key': SUB_KEY, 'Merchant-Serial-Number': MSN } });
-  if (!r.ok) throw new Error('token ' + r.status); const j = await r.json();
-  tok = { v: j.access_token, exp: Date.now() + (Number(j.expires_in) - 60) * 1000 }; return tok.v;
+  if (!r.ok) throw new Error('token ' + r.status);
+  const j = await r.json();
+  tok = { v: j.access_token, exp: Date.now() + (Number(j.expires_in) - 60) * 1000 };
+  return tok.v;
 }
 async function api(p, method = 'GET', body) {
   const r = await fetch(B + p, { method, headers: { Authorization: `Bearer ${await token()}`, 'Ocp-Apim-Subscription-Key': SUB_KEY, 'Merchant-Serial-Number': MSN, 'Content-Type': 'application/json', 'Idempotency-Key': crypto.randomUUID(), 'Vipps-System-Name': 'last-orders-bar', 'Vipps-System-Version': '1.0.0' }, body: body && JSON.stringify(body) });
-  const t = await r.text(); if (!r.ok) throw new Error(`${r.status} ${t}`); return t ? JSON.parse(t) : {};
+  const t = await r.text();
+  if (!r.ok) throw new Error(`${r.status} ${t}`);
+  return t ? JSON.parse(t) : {};
 }
 const hits = new Map();
-function limited(ip) { const n = Date.now(), a = (hits.get(ip) || []).filter(t => n - t < 60000); a.push(n); hits.set(ip, a); return a.length > 12 }
+function limited(ip) { const n = Date.now(), a = (hits.get(ip) || []).filter(t => n - t < 60000); a.push(n); hits.set(ip, a); return a.length > 12; }
 
 app.get('/api/config', (_q, res) => res.json({ live: LIVE, fallback: !LIVE && !!FALLBACK_URL }));
 app.get('/api/hidden', (_q, res) => res.json([...hidden]));
@@ -109,7 +118,8 @@ app.post('/api/create-payment', async (req, res) => {
     const hasAlc = items.some(i => i.d.alc);
     const reference = 'bar-' + crypto.randomBytes(8).toString('hex');
     const desc = items.map(i => `${i.qty}x ${i.d.name}`).join(', ').slice(0, 100);
-    orders.set(reference, { reference, dkk, desc, items: items.map(i => ({ id: i.d.id, name: i.d.name, qty: i.qty })), status: 'PENDING', created: Date.now() }); save();
+    orders.set(reference, { reference, dkk, desc, items: items.map(i => ({ id: i.d.id, name: i.d.name, qty: i.qty })), status: 'PENDING', created: Date.now() });
+    save();
     if (!LIVE) {
       if (!FALLBACK_URL) return res.status(503).json({ error: 'payments_not_configured' });
       return res.json({ fallbackUrl: FALLBACK_URL, amount: dkk, reference });
@@ -118,34 +128,40 @@ app.post('/api/create-payment', async (req, res) => {
     if (hasAlc) body.minimumUserAge = Number(MIN_AGE);
     const p = await api('/epayment/v1/payments', 'POST', body);
     res.json({ redirectUrl: p.redirectUrl, reference });
-  } catch (e) { console.error(e); res.status(500).json({ error: 'payment_failed' }) }
+  } catch (e) { console.error(e); res.status(500).json({ error: 'payment_failed' }); }
 });
 async function settle(ref) {
-  const o = orders.get(ref); if (!o || o.status !== 'PENDING' || !LIVE) return o;
+  const o = orders.get(ref);
+  if (!o || o.status !== 'PENDING' || !LIVE) return o;
   const p = await api(`/epayment/v1/payments/${ref}`);
   if (p.state === 'AUTHORIZED') {
     await api(`/epayment/v1/payments/${ref}/capture`, 'POST', { modificationAmount: { currency: 'DKK', value: o.dkk * 100 } });
-    o.status = 'PAID'; o.paid = Date.now(); save();
-  } else if (['ABORTED', 'EXPIRED', 'TERMINATED'].includes(p.state)) { o.status = 'FAILED'; save() }
+    o.status = 'PAID';
+    o.paid = Date.now();
+    save();
+  } else if (['ABORTED', 'EXPIRED', 'TERMINATED'].includes(p.state)) { o.status = 'FAILED'; save(); }
   return o;
 }
 app.get('/api/status/:ref', async (req, res) => {
   try {
-    const o = await settle(req.params.ref); if (!o) return res.status(404).json({});
-    res.json({ status: o.status, total: o.dkk, desc: o.desc, code: o.reference.slice(-6).toUpperCase() })
-  }
-  catch (e) { console.error(e); res.status(500).json({ status: 'ERROR' }) }
+    const o = await settle(req.params.ref);
+    if (!o) return res.status(404).json({});
+    res.json({ status: o.status, total: o.dkk, desc: o.desc, code: o.reference.slice(-6).toUpperCase() });
+  } catch (e) { console.error(e); res.status(500).json({ status: 'ERROR' }); }
 });
-app.post('/api/webhook', (req, res) => { const r = req.body?.reference; if (r) settle(r).catch(console.error); res.sendStatus(202) });
+app.post('/api/webhook', (req, res) => { const r = req.body?.reference; if (r) settle(r).catch(console.error); res.sendStatus(202); });
 
 // ---- staff endpoints (refuse while ADMIN_KEY is the default) ----
 const admin = (req, res, next) => (ADMIN_KEY !== 'change-me' && req.query.key === ADMIN_KEY) ? next() : res.sendStatus(401);
 app.get('/api/orders', admin, (_q, res) => res.json([...orders.values()].sort((a, b) => b.created - a.created).slice(0, 100)));
-app.post('/api/orders/:ref/served', admin, (req, res) => { const o = orders.get(req.params.ref); if (o) { o.served = true; save() } res.sendStatus(204) });
+app.post('/api/orders/:ref/served', admin, (req, res) => { const o = orders.get(req.params.ref); if (o) { o.served = true; save(); } res.sendStatus(204); });
 app.get('/api/drinks', admin, (_q, res) => res.json(DRINKS.map(d => ({ ...d, hidden: hidden.has(d.id) }))));
 app.post('/api/drinks/:id/hidden', admin, (req, res) => {
-  const id = Number(req.params.id); if (!find(id)) return res.sendStatus(404);
-  if (req.body.hidden) hidden.add(id); else hidden.delete(id); saveHidden(); res.json({ id, hidden: hidden.has(id) });
+  const id = Number(req.params.id);
+  if (!find(id)) return res.sendStatus(404);
+  if (req.body.hidden) hidden.add(id); else hidden.delete(id);
+  saveHidden();
+  res.json({ id, hidden: hidden.has(id) });
 });
 app.post('/api/drinks', admin, async (req, res) => {
   const b = req.body || {}, name = String(b.name || '').trim().slice(0, 80), cat = String(b.cat || '').trim().slice(0, 60), price = Math.round(Number(b.price));
@@ -154,33 +170,52 @@ app.post('/api/drinks', admin, async (req, res) => {
   const d = { id, name, price, cat, isNew: b.isNew !== false, sale: String(b.sale || '').trim().slice(0, 60), fmt: ['can', 'bottle', 'wine'].includes(b.fmt) ? b.fmt : (cat === 'Wine' ? 'wine' : 'can'), alc: typeof b.alc === 'boolean' ? b.alc : !NOALC.includes(cat), img: [] };
   DRINKS.push(d);
   const image = await pullImage(d, b.imageUrl, b.ambrosiaNo);
-  saveDrinks('Add drink ' + name);
+  saveDrinks(`[skip render] Add drink ${name}`);
   res.json({ drink: d, image, synced: !!(GITHUB_TOKEN && GITHUB_REPO) });
 });
 app.post('/api/drinks/:id/update', admin, (req, res) => {
-  const d = find(Number(req.params.id)); if (!d) return res.sendStatus(404); const b = req.body || {};
-  if ('price' in b) { const p = Math.round(Number(b.price)); if (p > 0 && p <= 2000) d.price = p }
+  const d = find(Number(req.params.id));
+  if (!d) return res.sendStatus(404);
+  const b = req.body || {};
+  if ('price' in b) { const p = Math.round(Number(b.price)); if (p > 0 && p <= 2000) d.price = p; }
   if ('isNew' in b) d.isNew = !!b.isNew;
   if ('sale' in b) d.sale = String(b.sale || '').trim().slice(0, 60);
   if ('name' in b && String(b.name).trim()) d.name = String(b.name).trim().slice(0, 80);
-  if ('cat' in b && String(b.cat).trim()) d.cat = String(b.cat).trim().slice(0, 60);
-  saveDrinks('Edit drink ' + d.name); res.json(d);
+  if ('cat' in b && String(b.cat).trim()) {
+    d.cat = String(b.cat).trim().slice(0, 60);
+    d.alc = !NOALC.includes(d.cat);
+  }
+  saveDrinks(`[skip render] Edit drink ${d.name}`);
+  res.json(d);
 });
 app.post('/api/drinks/:id/image', admin, async (req, res) => {
-  const d = find(Number(req.params.id)); if (!d) return res.sendStatus(404);
+  const d = find(Number(req.params.id));
+  if (!d) return res.sendStatus(404);
   res.json(await pullImage(d, req.body?.imageUrl, req.body?.ambrosiaNo));
 });
 app.delete('/api/drinks/:id', admin, (req, res) => {
-  const id = Number(req.params.id); const d = find(id); if (!d) return res.sendStatus(404);
-  DRINKS = DRINKS.filter(x => x.id !== id); hidden.delete(id); saveHidden(); saveDrinks('Remove drink ' + d.name); res.sendStatus(204);
+  const id = Number(req.params.id);
+  const d = find(id);
+  if (!d) return res.sendStatus(404);
+  DRINKS = DRINKS.filter(x => x.id !== id);
+  hidden.delete(id);
+  saveDrinks(`[skip render] Remove drink ${d.name}`);
+  res.sendStatus(204);
 });
 app.post('/api/bulk', admin, (req, res) => {
-  const { action, scope } = req.body || {}; let n = 0;
+  const { action, scope } = req.body || {};
+  let n = 0;
   for (const d of DRINKS) {
     if (scope === 'beers' && !BEERS.includes(d.cat)) continue;
-    if (action === 'clearNew' && d.isNew) { d.isNew = false; n++ }
-    if (action === 'clearSale' && d.sale) { d.sale = ''; n++ }
+    if (action === 'clearNew' && d.isNew) { d.isNew = false; n++; }
+    if (action === 'clearSale' && d.sale) { d.sale = ''; n++; }
   }
-  if (n) saveDrinks(`Bulk ${action} (${scope})`); res.json({ changed: n });
+  if (n) saveDrinks(`[skip render] Bulk ${action} (${scope})`);
+  res.json({ changed: n });
+});
+app.post('/api/deploy', admin, (req, res) => {
+  if (!GITHUB_TOKEN || !GITHUB_REPO) return res.status(503).json({ error: 'github_sync_not_configured' });
+  saveDrinks('Deploy menu changes');
+  res.json({ ok: true });
 });
 app.listen(PORT, () => console.log(`http://localhost:${PORT}  payments: ${LIVE ? 'Vipps MobilePay API' : FALLBACK_URL ? 'fallback link' : 'NOT CONFIGURED'}  github sync: ${GITHUB_TOKEN && GITHUB_REPO ? 'on' : 'off'}`));

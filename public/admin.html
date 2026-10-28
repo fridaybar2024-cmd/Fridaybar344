@@ -1,8 +1,8 @@
 <!DOCTYPE html><meta name=viewport content="width=device-width,initial-scale=1"><title>Staff</title>
-<style>body{background:#000;color:#f2f0eb;font-family:Helvetica,Arial;padding:16px;max-width:900px;margin:auto}h1{letter-spacing:-.03em}.o,.d{border-top:1px solid #333;padding:10px 0;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.p{color:#5fe37a}.f{color:#ff3b1f}button{padding:8px 14px;font-weight:700;cursor:pointer}.off{opacity:.45}.tabs button{background:none;color:#f2f0eb;border:1px solid #555;margin-right:6px}.tabs .on{background:#f2f0eb;color:#000}input,select{background:#111;color:#f2f0eb;border:1px solid #555;padding:7px;font-size:1rem}input[type=checkbox]{width:22px;height:22px}input[type=number]{width:80px}.d input[data-f=sale]{width:170px}.bar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}form label{display:block;margin:10px 0}form input[type=text],form input[type=number],form select{width:100%;max-width:420px}#msg{margin:12px 0;color:#5fe37a;white-space:pre-wrap}small{opacity:.6}</style>
+<style>body{background:#000;color:#f2f0eb;font-family:Helvetica,Arial;padding:16px;max-width:900px;margin:auto}h1{letter-spacing:-.03em}.o,.d{border-top:1px solid #333;padding:10px 0;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.p{color:#5fe37a}.f{color:#ff3b1f}button{padding:8px 14px;font-weight:700;cursor:pointer}.off{opacity:.45}.tabs button{background:none;color:#f2f0eb;border:1px solid #555;margin-right:6px}.tabs .on{background:#f2f0eb;color:#000}input,select{background:#111;color:#f2f0eb;border:1px solid #555;padding:7px;font-size:1rem}input[type=checkbox]{width:22px;height:22px}input[type=number]{width:80px}.d input[data-f=sale]{width:170px}.bar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}form label{display:block;margin:10px 0}form input[type=text],form input[type=number],form select{width:100%;max-width:420px}#msg{margin:12px 0;color:#5fe37a;white-space:pre-wrap}small{opacity:.6}#search{width:100%;max-width:420px;margin-bottom:10px}#deploy{background:#5fe37a;color:#000;border:none}</style>
 <h1>STAFF</h1><div class=tabs><button id=t1 class=on>Orders</button><button id=t2>Drinks</button><button id=t3>Add drink</button></div><div id=msg></div>
 <div id=orders></div>
-<div id=drinks style="display:none"><div class=bar><select id=scope><option value=beers>Beers only</option><option value=all>All drinks</option></select><button id=bn>Remove NEW tags</button><button id=bs>Remove discounts</button></div><p><small>Tick = visible on the menu. Changes save immediately.</small></p><div id=dl></div></div>
+<div id=drinks style="display:none"><div class=bar><input id=search placeholder="Search drinks or categories"><select id=scope><option value=beers>Beers only</option><option value=all>All drinks</option></select><button id=bn>Remove NEW tags</button><button id=bs>Remove discounts</button><button id=deploy>Deploy changes</button></div><p><small>Tick = visible on the menu. Changes save immediately. Press <b>Deploy changes</b> to publish them and trigger a Render deployment.</small></p><div id=dl></div></div>
 <div id=add style="display:none"><form id=f><label>Name<input type=text id=n required></label><label>Category<select id=c></select></label><label id=cw style="display:none">New category name<input type=text id=cn></label>
 <label>Price (kr)<input type=number id=pr required min=1 max=2000></label><label>Container<select id=fm><option value=can>Can</option><option value=bottle>Bottle</option><option value=wine>Wine bottle</option></select></label>
 <label><input type=checkbox id=al checked> Contains alcohol (age check)</label><label><input type=checkbox id=nw checked> Show NEW tag</label><label>Discount note (optional)<input type=text id=sl placeholder="SALE 7 kr off"></label>
@@ -18,18 +18,21 @@ async function loadOrders(){const r=await api('/orders');if(!r.ok){$('orders').t
  $('orders').innerHTML=r.j.map(o=>`<div class=o><div><b>${o.reference.slice(-6).toUpperCase()}</b> <span class="${o.status=='PAID'?'p':o.status=='FAILED'?'f':''}">${o.status}</span> - ${o.dkk} kr - ${new Date(o.created).toLocaleTimeString()}<br>${esc(o.desc)}</div><div>${o.status=='PAID'&&!o.served?`<button onclick="srv('${o.reference}')">Served</button>`:o.served?'served':''}</div></div>`).join('')}
 async function srv(r){await api('/orders/'+r+'/served','POST');loadOrders()}
 let LIST=[];
- async function editDrink(id){
-  const d=LIST.find(x=>x.id===id); if(!d)return say('Drink not found');
-  const cats=[...new Set(LIST.map(x=>x.cat))];
-  const name=prompt('Name',d.name); if(name===null)return;
-  const cat=prompt('Category (existing: '+cats.join(' | ')+')',d.cat); if(cat===null)return;
-  const r=await api('/drinks/'+id+'/update','POST',{name:name.trim(),cat:cat.trim()});
-  say(r.ok?'Saved':'Failed: '+r.status);
-  if(r.ok)loadDrinks();
+async function editDrink(id){
+ const d=LIST.find(x=>x.id===id);if(!d)return say('Drink not found');
+ const cats=[...new Set(LIST.map(x=>x.cat))];
+ const name=prompt('Name',d.name);if(name===null)return;
+ const cat=prompt('Category (existing: '+cats.join(' | ')+')',d.cat);if(cat===null)return;
+ const r=await api('/drinks/'+id+'/update','POST',{name:name.trim(),cat:cat.trim()});
+ say(r.ok?'Saved':'Failed: '+r.status);
+ if(r.ok)loadDrinks();
 }
 async function loadDrinks(){const r=await api('/drinks');if(!r.ok){$('dl').textContent='Unauthorised';return}LIST=r.j;
  const cats=[...new Set(LIST.map(d=>d.cat))];$('c').innerHTML=cats.map(c=>`<option>${esc(c)}</option>`).join('')+'<option value="__new">Other...</option>';
- $('dl').innerHTML=LIST.map(d=>`<div class="d ${d.hidden?'off':''}" data-id="${d.id}"><label><input type=checkbox data-f=vis ${d.hidden?'':'checked'}> <b>${esc(d.name)}</b> <small>${esc(d.cat)}</small></label><span><input type=number data-f=price value="${d.price}"> kr <label><input type=checkbox data-f=isNew ${d.isNew?'checked':''}> NEW</label> <input data-f=sale placeholder="discount note" value="${esc(d.sale||'')}"> <button data-a=img>Image</button> <button onclick="editDrink(${d.id})">Edit</button> <button data-a=del>Delete</button></span></div>`).join('')}
+ const q=$('search').value.trim().toLowerCase();
+ const shown=LIST.filter(d=>!q||d.name.toLowerCase().includes(q)||d.cat.toLowerCase().includes(q)).sort((a,b)=>a.name.localeCompare(b.name,'da'));
+ $('dl').innerHTML=shown.map(d=>`<div class="d ${d.hidden?'off':''}" data-id="${d.id}"><label><input type=checkbox data-f=vis ${d.hidden?'':'checked'}> <b>${esc(d.name)}</b> <small>${esc(d.cat)}</small></label><span><input type=number data-f=price value="${d.price}"> kr <label><input type=checkbox data-f=isNew ${d.isNew?'checked':''}> NEW</label> <input data-f=sale placeholder="discount note" value="${esc(d.sale||'')}"> <button data-a=img>Image</button> <button onclick="editDrink(${d.id})">Edit</button> <button data-a=del>Delete</button></span></div>`).join('')||'<p><small>No drinks match the search.</small></p>'}
+$('search').addEventListener('input',loadDrinks);
 $('dl').addEventListener('change',async e=>{const row=e.target.closest('.d'),f=e.target.dataset.f;if(!row||!f)return;const id=row.dataset.id;
  if(f=='vis'){const r=await api('/drinks/'+id+'/hidden','POST',{hidden:!e.target.checked});if(r.ok)row.classList.toggle('off',!e.target.checked);return}
  const v=f=='isNew'?e.target.checked:e.target.value;const r=await api('/drinks/'+id+'/update','POST',{[f]:v});say(r.ok?'Saved':'Failed')});
@@ -39,11 +42,12 @@ $('dl').addEventListener('click',async e=>{const row=e.target.closest('.d'),a=e.
   const r=await api('/drinks/'+id+'/image','POST',/^[0-9]+$/.test(v.trim())?{ambrosiaNo:v.trim()}:{imageUrl:v.trim()});say(r.j.ok?'Image updated from '+r.j.source:'Image failed: '+(r.j.error||''))}});
 const bulk=async a=>{const r=await api('/bulk','POST',{action:a,scope:$('scope').value});say('Changed '+(r.j.changed||0)+' drinks');loadDrinks()};
 $('bn').onclick=()=>bulk('clearNew');$('bs').onclick=()=>bulk('clearSale');
+$('deploy').onclick=async()=>{if(!confirm('Commit the current menu to GitHub and trigger a Render deployment?'))return;say('Deploying...');const r=await api('/deploy','POST');say(r.ok?'Deploy requested. Render will restart shortly.':'Deploy failed: '+(r.j.error||r.status))};
 $('c').onchange=()=>{$('cw').style.display=$('c').value=='__new'?'':'none';const c=$('c').value;if(c!='__new'){$('al').checked=!NOALC.includes(c);if(c=='Wine')$('fm').value='wine'}};
 $('f').onsubmit=async e=>{e.preventDefault();const cat=$('c').value=='__new'?$('cn').value:$('c').value;say('Adding and fetching image...');
  const im=$('im').value.trim(),body={name:$('n').value,cat,price:$('pr').value,fmt:$('fm').value,alc:$('al').checked,isNew:$('nw').checked,sale:$('sl').value};
  if(/^[0-9]+$/.test(im))body.ambrosiaNo=im;else if(im)body.imageUrl=im;
  const r=await api('/drinks','POST',body);if(!r.ok){say('Error: '+(r.j.error||r.status));return}
- say('Added "'+r.j.drink.name+'" (id '+r.j.drink.id+').\n'+(r.j.image.ok?'Image pulled from '+r.j.image.source:'No image: '+r.j.image.error)+'\n'+(r.j.synced?'Backed up to GitHub.':'Not backed up to GitHub (set GITHUB_TOKEN and GITHUB_REPO).'));$('f').reset();$('c').onchange()};
+ say('Added "'+r.j.drink.name+'" (id '+r.j.drink.id+').\n'+(r.j.image.ok?'Image pulled from '+r.j.image.source:'No image: '+r.j.image.error)+'\nPress Deploy changes to publish it.');$('f').reset();$('c').onchange()};
 loadOrders();setInterval(loadOrders,5000);
 </script>
