@@ -430,7 +430,8 @@
   "alc": true,
   "img": [
    "https://sodavandskompagniet.dk/shop/img/gl_groen_tuborg.webp"
-  ]
+  ],
+  "hidden": true
  },
  {
   "id": 32,
