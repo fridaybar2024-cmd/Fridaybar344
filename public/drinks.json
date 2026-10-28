@@ -11,8 +11,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/150360.jpg",
    "https://ambrosiagroup.dk/img/prod/150360.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 1,
@@ -69,8 +68,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/75430.jpg",
    "https://ambrosiagroup.dk/img/prod/75430.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 5,
@@ -84,8 +82,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/75428.jpg",
    "https://ambrosiagroup.dk/img/prod/75428.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 6,
@@ -96,8 +93,7 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 7,
@@ -111,8 +107,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/154639.png",
    "https://ambrosiagroup.dk/img/prod/154639.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 8,
@@ -126,8 +121,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/54521.png",
    "https://ambrosiagroup.dk/img/prod/54521.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 9,
@@ -141,8 +135,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/150546.jpg",
    "https://ambrosiagroup.dk/img/prod/150546.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 10,
@@ -156,8 +149,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/152277.jpg",
    "https://ambrosiagroup.dk/img/prod/152277.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 11,
@@ -182,8 +174,7 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/152732.jpg",
    "https://ambrosiagroup.dk/img/prod/152732.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 13,
@@ -196,8 +187,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/01987.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 14,
@@ -210,8 +200,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/8411.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 15,
@@ -224,8 +213,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/154168.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 16,
@@ -262,8 +250,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/250013.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 19,
@@ -276,8 +263,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/9653.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 20,
@@ -303,8 +289,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/14322.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 22,
@@ -354,8 +339,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/01788.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 26,
@@ -366,8 +350,7 @@
   "sale": "",
   "fmt": "bottle",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 27,
@@ -378,8 +361,7 @@
   "sale": "SALE!! DKK - 7.00",
   "fmt": "can",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 28,
@@ -392,8 +374,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/152891.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 29,
@@ -404,8 +385,7 @@
   "sale": "",
   "fmt": "wine",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 30,
@@ -418,8 +398,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/6407.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 31,
@@ -445,8 +424,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/153634.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 33,
@@ -470,8 +448,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/36541.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 35,
@@ -497,8 +474,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/152318.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 37,
@@ -509,8 +485,7 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 38,
@@ -550,8 +525,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/150368.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 41,
@@ -564,8 +538,7 @@
   "alc": true,
   "img": [
    "https://ambrosiagroup.dk/img/prod/8426.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 42,
@@ -576,8 +549,7 @@
   "sale": "SALE!! DKK - 7.00",
   "fmt": "can",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 43,
@@ -601,8 +573,7 @@
   "sale": "",
   "fmt": "wine",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 45,
@@ -613,8 +584,7 @@
   "sale": "",
   "fmt": "can",
   "alc": false,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 46,
@@ -640,8 +610,7 @@
   "alc": false,
   "img": [
    "https://ambrosiagroup.dk/img/prod/6724.jpg"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 48,
@@ -715,8 +684,7 @@
   "sale": "",
   "fmt": "wine",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 54,
@@ -729,8 +697,7 @@
   "alc": true,
   "img": [
    "https://fadnord.dk/wp-content/uploads/sites/3/2025/01/Mikkeller-Hop-Shop-IPA-ds_1.png"
-  ],
-  "hidden": true
+  ]
  },
  {
   "id": 55,
@@ -744,38 +711,5 @@
   "img": [
    "https://ambrosiagroup.dk/img/prod/154315.png"
   ]
- },
- {
-  "id": 56,
-  "name": "Leffe",
-  "price": 35,
-  "cat": "Normal Beers",
-  "isNew": true,
-  "sale": "",
-  "fmt": "bottle",
-  "alc": true,
-  "img": []
- },
- {
-  "id": 57,
-  "name": "TO ØL - 45 DAYS ORGANIC",
-  "price": 25,
-  "cat": "Normal Beers",
-  "isNew": true,
-  "sale": "",
-  "fmt": "can",
-  "alc": true,
-  "img": []
- },
- {
-  "id": 58,
-  "name": "HERSLEV INDIA PALE ALE",
-  "price": 40,
-  "cat": "Normal Beers",
-  "isNew": true,
-  "sale": "",
-  "fmt": "can",
-  "alc": true,
-  "img": []
  }
 ]
