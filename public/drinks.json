@@ -821,5 +821,16 @@
   "fmt": "bottle",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 63,
+  "name": "To øl - 45 days pilsner",
+  "price": 25,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "can",
+  "alc": true,
+  "img": []
  }
 ]
