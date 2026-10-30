@@ -766,5 +766,16 @@
   "fmt": "can",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 58,
+  "name": "Lucky buddha",
+  "price": 27,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "bottle",
+  "alc": true,
+  "img": []
  }
 ]
