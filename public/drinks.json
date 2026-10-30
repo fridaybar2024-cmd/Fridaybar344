@@ -788,5 +788,16 @@
   "fmt": "can",
   "alc": false,
   "img": []
+ },
+ {
+  "id": 60,
+  "name": "Polara chinotto",
+  "price": 25,
+  "cat": "Soft Drinks",
+  "isNew": true,
+  "sale": "",
+  "fmt": "bottle",
+  "alc": false,
+  "img": []
  }
 ]
