@@ -777,5 +777,16 @@
   "fmt": "bottle",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 59,
+  "name": "Fritz kola - apple",
+  "price": 25,
+  "cat": "Soft Drinks",
+  "isNew": true,
+  "sale": "",
+  "fmt": "can",
+  "alc": false,
+  "img": []
  }
 ]
