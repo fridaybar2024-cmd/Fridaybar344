@@ -771,12 +771,11 @@
   "name": "Lucky buddha",
   "price": 27,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 59,
@@ -792,10 +791,10 @@
  {
   "id": 60,
   "name": "Polara chinotto",
-  "price": 23,
+  "price": 25,
   "cat": "Soft Drinks",
   "isNew": true,
-  "sale": "50% off due",
+  "sale": "50% off due to expiry",
   "fmt": "bottle",
   "alc": false,
   "img": []
