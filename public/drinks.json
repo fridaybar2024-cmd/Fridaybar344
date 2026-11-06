@@ -659,7 +659,7 @@
   "name": "Desperados",
   "price": 30,
   "cat": "Ciders and Other Alcoholic Drinks",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
