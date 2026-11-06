@@ -9,3 +9,5 @@ body{border-top:2px solid #c8102e}
 #jul-snow{position:fixed;inset:0;width:100%;height:100%;z-index:24;pointer-events:none}
 .hero h1{position:relative;width:fit-content}
 .hero h1 .jul-hat{position:absolute;left:-.12em;top:-.5em;width:.85em;height:auto;transform:rotate(-14deg);pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+.row-art{position:relative}
+svg.jul-bhat{position:absolute;display:block;height:auto;pointer-events:none;z-index:3;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}

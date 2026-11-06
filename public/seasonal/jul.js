@@ -10,10 +10,32 @@ e.style.cssText=`left:${(i+.5)*100/items.length}%;--len:${len}px;--w:${w}px;--d:
 e.innerHTML=s;r.appendChild(e)});
 document.body.appendChild(r);
 
+const HAT='<svg class="jul-bhat" viewBox="0 0 60 50"><path d="M6 40C8 20 22 4 44 6c-6 6-4 14 0 20 4 6 8 10 10 14z" fill="#c8102e"/><rect x="2" y="36" width="54" height="11" rx="5.5" fill="#f2f0eb"/><circle cx="46" cy="7" r="6" fill="#f2f0eb"/></svg>';
 const h1=document.querySelector('.hero h1');
-if(h1){const hat=document.createElement('span');hat.setAttribute('aria-hidden','true');
-hat.innerHTML='<svg class="jul-hat" viewBox="0 0 60 50"><path d="M6 40C8 20 22 4 44 6c-6 6-4 14 0 20 4 6 8 10 10 14z" fill="#c8102e"/><rect x="2" y="36" width="54" height="11" rx="5.5" fill="#f2f0eb"/><circle cx="46" cy="7" r="6" fill="#f2f0eb"/></svg>';
-h1.insertBefore(hat.firstChild,h1.firstChild)}
+if(h1){const t=document.createElement('span');t.innerHTML=HAT.replace('jul-bhat','jul-hat');h1.insertBefore(t.firstChild,h1.firstChild)}
+
+const SEL='#art img,#art svg,.row-art.open img,.row-art.open svg';
+let raf=0;
+const mo=new MutationObserver(()=>sched());
+const obs=()=>mo.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+function sched(){cancelAnimationFrame(raf);raf=requestAnimationFrame(hats)}
+function hats(){
+mo.disconnect();
+document.querySelectorAll('svg.jul-bhat').forEach(e=>e.remove());
+document.querySelectorAll(SEL).forEach(m=>{
+if(m.classList.contains('jul-bhat')||m.closest('#jul'))return;
+const p=m.closest('#card,.row-art');if(!p)return;
+const a=m.getBoundingClientRect(),b=p.getBoundingClientRect();
+if(!a.width||!a.height)return;
+const w=Math.max(28,Math.min(a.width*.7,64)),t=document.createElement('span');
+t.innerHTML=HAT;const s=t.firstChild;
+s.style.cssText=`width:${w}px;left:${a.left-b.left+a.width/2}px;top:${a.top-b.top}px;transform:translate(-50%,-72%) rotate(-12deg) translateZ(30px)`;
+p.appendChild(s)});
+obs()}
+obs();
+addEventListener('resize',sched);
+document.addEventListener('load',sched,true);
+sched();
 
 if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
 const c=document.createElement('canvas');c.id='jul-snow';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
