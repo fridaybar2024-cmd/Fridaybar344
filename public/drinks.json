@@ -759,7 +759,7 @@
   "name": "Iki",
   "price": 31,
   "cat": "Soft Drinks",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "can",
   "alc": true,
