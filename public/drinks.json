@@ -696,7 +696,7 @@
   "name": "Åben - circle session IPA",
   "price": 33,
   "cat": "Normal Beers",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "can",
   "alc": true,
