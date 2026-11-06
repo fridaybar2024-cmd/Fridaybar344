@@ -748,7 +748,7 @@
   "name": "Herslev India Pale Ale Organic",
   "price": 41,
   "cat": "Normal Beers",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "can",
   "alc": true,
