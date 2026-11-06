@@ -515,7 +515,7 @@
   "name": "Sapporo Black",
   "price": 43,
   "cat": "Normal Beers",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
