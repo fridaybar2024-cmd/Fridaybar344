@@ -775,7 +775,8 @@
   "sale": "",
   "fmt": "bottle",
   "alc": true,
-  "img": []
+  "img": [],
+  "hidden": true
  },
  {
   "id": 59,
