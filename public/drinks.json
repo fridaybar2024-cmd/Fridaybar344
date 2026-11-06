@@ -854,5 +854,16 @@
   "fmt": "bottle",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 66,
+  "name": "Beer pong ticket",
+  "price": 60,
+  "cat": "Events",
+  "isNew": true,
+  "sale": "",
+  "fmt": "can",
+  "alc": true,
+  "img": []
  }
 ]
