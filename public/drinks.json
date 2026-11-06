@@ -865,5 +865,16 @@
   "fmt": "can",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 67,
+  "name": "Pizza slice",
+  "price": 30,
+  "cat": "Events",
+  "isNew": true,
+  "sale": "",
+  "fmt": "can",
+  "alc": false,
+  "img": []
  }
 ]
