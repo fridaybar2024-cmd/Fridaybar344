@@ -683,7 +683,7 @@
   "name": "Thrive Peak",
   "price": 35,
   "cat": "Non-Alc. Beers",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "can",
   "alc": false,
