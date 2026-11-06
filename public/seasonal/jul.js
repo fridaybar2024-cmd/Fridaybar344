@@ -9,4 +9,20 @@ items.forEach(([s,w,len],i)=>{const e=document.createElement('div');e.className=
 e.style.cssText=`left:${(i+.5)*100/items.length}%;--len:${len}px;--w:${w}px;--d:${3+(i%4)*.7}s;animation-delay:-${i*.5}s`;
 e.innerHTML=s;r.appendChild(e)});
 document.body.appendChild(r);
+
+const h1=document.querySelector('.hero h1');
+if(h1){const hat=document.createElement('span');hat.setAttribute('aria-hidden','true');
+hat.innerHTML='<svg class="jul-hat" viewBox="0 0 60 50"><path d="M6 40C8 20 22 4 44 6c-6 6-4 14 0 20 4 6 8 10 10 14z" fill="#c8102e"/><rect x="2" y="36" width="54" height="11" rx="5.5" fill="#f2f0eb"/><circle cx="46" cy="7" r="6" fill="#f2f0eb"/></svg>';
+h1.insertBefore(hat.firstChild,h1.firstChild)}
+
+if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
+const c=document.createElement('canvas');c.id='jul-snow';c.setAttribute('aria-hidden','true');document.body.appendChild(c);
+const x=c.getContext('2d');let w,h,f=[],t=0;
+const rs=()=>{const d=devicePixelRatio||1;w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
+f=Array.from({length:w<860?45:90},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2.2+.8,s:Math.random()*.8+.4,p:Math.random()*6.28}))};
+addEventListener('resize',rs);rs();
+(function L(){if(!document.hidden){x.clearRect(0,0,w,h);x.fillStyle='rgba(255,255,255,.85)';t+=.01;
+for(const q of f){q.y+=q.s;q.x+=Math.sin(t+q.p)*.4;if(q.y>h+4){q.y=-4;q.x=Math.random()*w}x.beginPath();x.arc(q.x,q.y,q.r,0,6.283);x.fill()}}
+requestAnimationFrame(L)})();
+}
 })();
