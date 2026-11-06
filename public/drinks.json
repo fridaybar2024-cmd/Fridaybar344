@@ -735,7 +735,7 @@
   "name": "Thrive Unwind IPA",
   "price": 35,
   "cat": "Non-Alc. Beers",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "can",
   "alc": false,
