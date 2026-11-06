@@ -82,6 +82,11 @@ app.get(['/', '/index.html'], (_q, res) => {
   let h = fs.readFileSync('public/index.html', 'utf8');
   const css = hidden.size ? `<style>${[...hidden].map(i => '#r' + i).join(',')}{display:none!important}</style>` : '';
   h = h.replace('</head>', css + '</head>').replace('</body>', `<script>${FIX}</script></body>`);
+  const now = Date.now();
+  if (now >= Date.parse('2026-11-06') && now < Date.parse('2027-01-07')) { // SEASONAL-JUL
+    h = h.replace('</head>', '<link rel="stylesheet" href="/seasonal/jul.css"></head>')
+         .replace('</body>', '<script src="/seasonal/jul.js" defer></script></body>');
+  }
   res.set('Cache-Control', 'no-store').type('html').send(h);
 });
 app.use(express.static(DATA_DIR));

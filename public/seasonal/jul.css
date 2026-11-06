@@ -1,0 +1,13 @@
+#jul{position:fixed;top:0;left:0;right:0;height:0;z-index:25;pointer-events:none}
+#jul .str{position:absolute;top:0;transform-origin:50% 0;animation:julsway var(--d,4s) ease-in-out infinite alternate}
+#jul .str::before{content:"";display:block;width:1px;height:var(--len);margin:0 auto;background:rgba(242,240,235,.55)}
+#jul svg{display:block;width:var(--w,34px);height:auto;margin-left:calc(var(--w,34px)/-2);position:relative;left:0;filter:drop-shadow(0 3px 4px rgba(0,0,0,.6))}
+@keyframes julsway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+@media (max-width:860px){#jul .str:nth-child(even){display:none}}
+@media (prefers-reduced-motion:reduce){#jul .str{animation:none}}
+body{border-top:2px solid #c8102e}
+#jul-snow{position:fixed;inset:0;width:100%;height:100%;z-index:24;pointer-events:none}
+.hero h1{position:relative;width:fit-content}
+.hero h1 .jul-hat{position:absolute;left:-.12em;top:-.5em;width:.85em;height:auto;transform:rotate(-14deg);pointer-events:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
+.row-art{position:relative}
+svg.jul-bhat{position:absolute;display:block;height:auto;pointer-events:none;z-index:3;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5))}
