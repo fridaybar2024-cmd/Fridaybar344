@@ -411,7 +411,7 @@
   "name": "Thy Limfjordsporter",
   "price": 24,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
