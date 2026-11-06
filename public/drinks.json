@@ -19,7 +19,7 @@
   "name": "Birra Moretti",
   "price": 27,
   "cat": "Normal Beers",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
