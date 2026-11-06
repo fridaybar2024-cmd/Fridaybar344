@@ -529,7 +529,7 @@
   "name": "Tsingtao",
   "price": 28,
   "cat": "Normal Beers",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
