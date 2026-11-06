@@ -771,11 +771,12 @@
   "name": "Lucky buddha",
   "price": 27,
   "cat": "Normal Beers",
-  "isNew": true,
+  "isNew": false,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
-  "img": []
+  "img": [],
+  "hidden": true
  },
  {
   "id": 59,
@@ -794,7 +795,7 @@
   "price": 25,
   "cat": "Soft Drinks",
   "isNew": true,
-  "sale": "50% off due to expiry",
+  "sale": "80% off",
   "fmt": "bottle",
   "alc": false,
   "img": []
