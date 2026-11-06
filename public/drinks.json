@@ -842,5 +842,16 @@
   "fmt": "bottle",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 65,
+  "name": "Thy JuleRen",
+  "price": 25,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "bottle",
+  "alc": true,
+  "img": []
  }
 ]
