@@ -876,5 +876,16 @@
   "fmt": "can",
   "alc": false,
   "img": []
+ },
+ {
+  "id": 68,
+  "name": "Somersby",
+  "price": 25,
+  "cat": "Ciders and Other Alcoholic Drinks",
+  "isNew": false,
+  "sale": "",
+  "fmt": "can",
+  "alc": true,
+  "img": []
  }
 ]
