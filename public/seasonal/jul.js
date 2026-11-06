@@ -47,4 +47,27 @@ addEventListener('resize',rs);rs();
 for(const q of f){q.y+=q.s;q.x+=Math.sin(t+q.p)*.4;if(q.y>h+4){q.y=-4;q.x=Math.random()*w}x.beginPath();x.arc(q.x,q.y,q.r,0,6.283);x.fill()}}
 requestAnimationFrame(L)})();
 }
+
+// Seasonal: new (unlisted) categories first, known ones keep their usual order
+(()=>{
+const KNOWN=['normal beers','non-alc. beers','ciders and other alcoholic drinks','wine','soft drinks','ginger beer & kombucha'];
+const name=s=>{const h=s.querySelector('h1,h2,h3,header');return (h?h.textContent:s.textContent).trim().toLowerCase()};
+const rank=s=>{const n=name(s),i=KNOWN.findIndex(k=>n.startsWith(k));return i<0?-1:i};
+let busy=false;
+function order(){
+ if(busy)return;
+ const secs=[...document.querySelectorAll('section')];
+ if(secs.length<2)return;
+ const sorted=secs.map((s,i)=>[s,i]).sort((a,b)=>rank(a[0])-rank(b[0])||a[1]-b[1]).map(x=>x[0]);
+ if(sorted.every((s,i)=>s===secs[i]))return;
+ busy=true;
+ const parent=secs[0].parentNode,marker=document.createComment('');
+ parent.insertBefore(marker,secs[0]);
+ sorted.forEach(s=>parent.insertBefore(s,marker));
+ marker.remove();
+ busy=false;
+}
+order();
+addEventListener('load',order);
+})();
 })();
