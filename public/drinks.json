@@ -831,5 +831,16 @@
   "fmt": "can",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 64,
+  "name": "Tuborg Julebryg",
+  "price": 20,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "bottle",
+  "alc": true,
+  "img": []
  }
 ]
