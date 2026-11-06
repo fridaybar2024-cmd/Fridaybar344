@@ -670,7 +670,7 @@
   "name": "Folk Combucha",
   "price": 35,
   "cat": "Ginger Beer & Kombucha",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": false,
