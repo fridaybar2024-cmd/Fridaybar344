@@ -48,26 +48,24 @@ for(const q of f){q.y+=q.s;q.x+=Math.sin(t+q.p)*.4;if(q.y>h+4){q.y=-4;q.x=Math.r
 requestAnimationFrame(L)})();
 }
 
-// Seasonal: new (unlisted) categories first, known ones keep their usual order
+// Seasonal: new (unlisted) categories first, known ones keep their usual order. Category is read from drinks.json via the row ids (#r<id>).
 (()=>{
 const KNOWN=['normal beers','non-alc. beers','ciders and other alcoholic drinks','wine','soft drinks','ginger beer & kombucha'];
-const name=s=>{const h=s.querySelector('h1,h2,h3,header');return (h?h.textContent:s.textContent).trim().toLowerCase()};
-const rank=s=>{const n=name(s),i=KNOWN.findIndex(k=>n.startsWith(k));return i<0?-1:i};
-let busy=false;
+const rank=c=>{if(c==null)return 50;const i=KNOWN.indexOf(String(c).trim().toLowerCase());return i<0?-1:i};
+let cats=null,done=false;
 function order(){
- if(busy)return;
+ if(!cats||done)return;
  const secs=[...document.querySelectorAll('section')];
  if(secs.length<2)return;
- const sorted=secs.map((s,i)=>[s,i]).sort((a,b)=>rank(a[0])-rank(b[0])||a[1]-b[1]).map(x=>x[0]);
+ const cat=s=>{const e=[...s.querySelectorAll('[id]')].find(n=>/^r\d+$/.test(n.id));return e?cats.get(e.id.slice(1)):undefined};
+ const sorted=secs.map((s,i)=>[s,i,rank(cat(s))]).sort((a,b)=>a[2]-b[2]||a[1]-b[1]).map(x=>x[0]);
+ done=true;
  if(sorted.every((s,i)=>s===secs[i]))return;
- busy=true;
  const parent=secs[0].parentNode,marker=document.createComment('');
  parent.insertBefore(marker,secs[0]);
  sorted.forEach(s=>parent.insertBefore(s,marker));
  marker.remove();
- busy=false;
 }
-order();
-addEventListener('load',order);
+fetch('/drinks.json',{cache:'no-store'}).then(r=>r.json()).then(l=>{cats=new Map(l.map(d=>[String(d.id),d.cat]));order()}).catch(()=>{});
 })();
 })();
