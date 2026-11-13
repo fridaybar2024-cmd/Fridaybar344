@@ -885,5 +885,16 @@
   "fmt": "can",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 69,
+  "name": "Full pizza",
+  "price": 80,
+  "cat": "Events",
+  "isNew": true,
+  "sale": "-20 kr for margherita",
+  "fmt": "can",
+  "alc": false,
+  "img": []
  }
 ]
