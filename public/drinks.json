@@ -771,7 +771,7 @@
   "name": "Lucky buddha",
   "price": 27,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
