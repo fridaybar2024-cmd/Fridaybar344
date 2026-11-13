@@ -92,7 +92,7 @@
   "name": "Guinness",
   "price": 35,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
@@ -759,18 +759,19 @@
   "name": "Iki",
   "price": 31,
   "cat": "Soft Drinks",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": []
+  "img": [],
+  "hidden": true
  },
  {
   "id": 58,
   "name": "Lucky buddha",
   "price": 27,
   "cat": "Normal Beers",
-  "isNew": false,
+  "isNew": true,
   "sale": "",
   "fmt": "bottle",
   "alc": true,
@@ -862,8 +863,7 @@
   "sale": "",
   "fmt": "can",
   "alc": true,
-  "img": [],
-  "hidden": true
+  "img": []
  },
  {
   "id": 67,
