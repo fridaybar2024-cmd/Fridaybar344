@@ -896,5 +896,16 @@
   "fmt": "can",
   "alc": false,
   "img": []
+ },
+ {
+  "id": 70,
+  "name": "KØLSTER JULEBRYG ØKO",
+  "price": 30,
+  "cat": "Christmas Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "can",
+  "alc": true,
+  "img": []
  }
 ]
