@@ -907,5 +907,16 @@
   "fmt": "can",
   "alc": true,
   "img": []
+ },
+ {
+  "id": 71,
+  "name": "WESTMALLE DUBBEL",
+  "price": 35,
+  "cat": "Normal Beers",
+  "isNew": true,
+  "sale": "",
+  "fmt": "bottle",
+  "alc": true,
+  "img": []
  }
 ]
